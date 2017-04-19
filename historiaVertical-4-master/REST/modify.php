@@ -4,26 +4,33 @@
  $entityBody = file_get_contents('php://input');
  $body = json_decode($entityBody,true);
 
- if(empty($body)){
- 	$password = md5($_POST['contra']);
+ if(empty($body))
+ {
+    $username = $_POST['username'];
+ 	$oldPassword = md5($_POST['oldPassword']);
+    $newPassword = md5($_POST['newPassword']);
 
-    $user = array(['Password' => $password]
-                    );
- }else{
+    
+ }
+ else{
  	header('Content-type: application/json');
 
- 	foreach ($body as $key => $value) {
- 		$contra = $value['contra'];
+ 	foreach ($body as $key => $value) 
+    {
+ 		$username = $value['username'];
+        $oldPassword = md5($value['oldPassword']);
+        $newPassword = md5($value['newPassword']);
  	}
  }
 
  $con = new MongoDB\Client;
 
- if($con){
+ if($con)
+ {
  	$db = $con->users;
  	$collection = $db->user;
  	$filter = array(['Username' => $username,
-                    'Password' => $pass_hash
+                    'Password' => $oldPassword
                     ]);
     $options = [
 
@@ -33,21 +40,39 @@
        
     $rows = $collection->find($qry);
        
+    $usercorrect = false;
+
     foreach ($rows as $row) {
           
-        if($row['Username']== $username && $row['Password'] == $pass_hash){
+        if($row['Username']== $username && $row['Password'] == $oldPassword)
+        {
+            $collection -> update(array('$set'=> array('Password'=> $newPassword)));
+
             $usercorrect = true;
             $user_found = $row;
+
         }
     }
-    if($usercorrect){
 
-        $collection -> update($user_found['Password'], $_POST['contra']);
+    if($usercorrect)
+    {      
+          //$collection -> update($user_found['Password'],$newPassword);
 
 
-        //echo json_encode(array('status'=> '3','message' => $message, 'Username' => $user_found['Username'] ));
-    }else{
+        $changed = true;
+
+        //echo json_encode(array('status'=> '1','isChanged' => $changed));
+    }
+    elseif (!$usercorrect)
+    {
+
+        $changed = false;
+        //echo json_encode(array('status'=> '2','isChanged' => $changed));
+
+    }
+    else{
         die("Mongo DB not connected!");
     }
+    echo json_encode(array('isChanged' => $changed));
  }
 ?>
