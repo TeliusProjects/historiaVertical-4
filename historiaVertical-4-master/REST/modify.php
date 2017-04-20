@@ -6,18 +6,16 @@
 
  if(empty($body))
  {
-    $username = $_POST['username'];
- 	$oldPassword = md5($_POST['oldPassword']);
+    $username    = $_POST['username'];
+ 	  $oldPassword = md5($_POST['oldPassword']);
     $newPassword = md5($_POST['newPassword']);
-
-    
  }
  else{
  	header('Content-type: application/json');
 
- 	foreach ($body as $key => $value) 
+ 	foreach ($body as $value) 
     {
- 		$username = $value['username'];
+ 		     $username    = $value['username'];
         $oldPassword = md5($value['oldPassword']);
         $newPassword = md5($value['newPassword']);
  	}
@@ -73,6 +71,7 @@
     else{
         die("Mongo DB not connected!");
     }
+  
     echo json_encode(array('isChanged' => $changed));
  }
 ?>
