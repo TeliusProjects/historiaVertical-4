@@ -20,13 +20,14 @@
         android:textSize="34sp"
         android:text="@string/ChangePass"
         android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
         />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/divider_horizontal_dim_dark"
-          />
+       <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ffffff"
+        />
 
 
     <LinearLayout
@@ -107,16 +108,16 @@
 
     </LinearLayout>
 
-    <ImageView
+     <View
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/divider_horizontal_dim_dark"
+        android:layout_height="1dp"
+        android:background="#ffffff"
         />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:text="@string/BttnChange"
         android:id="@+id/bttnChange"/>
 </LinearLayout>
