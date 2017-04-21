@@ -1,0 +1,8 @@
+#Turn on the rewriter engine
+
+Options +FollowSymlinks
+RewriteEngine on
+
+#Request routing
+
+RewriteRule ^([a-zA-Z_-]*)$ 	prueba.php?name=$1 [nc,qsa]
