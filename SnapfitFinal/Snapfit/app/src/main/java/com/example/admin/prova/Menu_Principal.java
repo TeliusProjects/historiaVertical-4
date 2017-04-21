@@ -1,7 +1,6 @@
 package com.example.admin.prova;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,9 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -20,10 +17,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -33,29 +28,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.util.ArrayList;
 
 public class Menu_Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -189,7 +174,9 @@ public class Menu_Principal extends AppCompatActivity
         int id = item.getItemId();
 
         //boton del action bar (arriba) el settings
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings)
+        {
+
             Intent settings = new Intent(Menu_Principal.this, SettingsActivity.class);
             settings.putExtra("username", user_name);
             startActivity(settings);
@@ -197,11 +184,11 @@ public class Menu_Principal extends AppCompatActivity
         }
 
         //boton del action bar (arriba) el logout
-        if(id == R.id.action_logout) {
-            Intent login = new Intent(Menu_Principal.this, MainActivity.class);
-            startActivity(login);
-            return true;
-        }
+        //if(id == R.id.action_logout) {
+          //  Intent login = new Intent(Menu_Principal.this, MainActivity.class);
+            //startActivity(login);
+            //return true;
+        //}
         return super.onOptionsItemSelected(item);
     }
 
@@ -285,7 +272,7 @@ public class Menu_Principal extends AppCompatActivity
 
         } else if (id == R.id.nav_settings) {
 
-            Intent settings = new Intent(Menu_Principal.this, SettingsActivity.class);
+            Intent settings = new Intent(Menu_Principal.this, PasswordActivity.class);
             settings.putExtra("username", user_name);
             startActivity(settings);
 

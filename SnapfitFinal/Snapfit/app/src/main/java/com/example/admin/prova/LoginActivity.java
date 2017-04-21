@@ -23,7 +23,7 @@ import java.net.URL;
 
 public class LoginActivity extends Activity {
 
-    private static final String URL = "http://192.168.1.43/REST/login.php";
+    private static final String URL = "http://192.168.134.137/REST/login.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

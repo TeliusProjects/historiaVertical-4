@@ -8,21 +8,45 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    android:weightSum="1"
-    android:background="@color/Blue"
-    >
+    tools:context="com.example.admin.prova.SettingsActivity"
+    android:orientation="vertical">
 
-
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="34sp"
-        android:text="@string/ChangePass"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        />
+        android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/businessman"/>
+        <TextView
+            android:id="@+id/txtUser_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Change profile picture"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PROFILE"
+            android:layout_gravity="left"/>
+
+        <ListView
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/list_Profile"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,85 +57,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/oldPass"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:paddingBottom="@dimen/center_margin"/>
+            android:text="ACCOUNT"
+            android:layout_gravity="left"/>
 
-        <EditText
+        <ListView
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:textSize="20sp"
-            android:background="@drawable/edittext"
-            android:id="@+id/editOldPassword"
-            android:inputType="textVisiblePassword"/>
-
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin">
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/newPass"
-            android:textSize="20sp"
-            android:textColor="@android:color/white"
-            android:paddingBottom="@dimen/center_margin"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:textSize="20sp"
-            android:background="@drawable/edittext"
-            android:id="@+id/editNewPassword"
-            android:inputType="textVisiblePassword"/>
-
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/reNewPass"
-            android:textSize="20sp"
-            android:textColor="@android:color/white"
-            android:paddingBottom="@dimen/center_margin"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:background="@drawable/edittext"
-            android:id="@+id/editRepeatNewPassword"
-            android:inputType="textVisiblePassword"/>
-
-
-
+            android:id="@+id/list_Account"/>
     </LinearLayout>
 
 
 
-    <Button
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/BttnChange"
-        android:background="@android:color/white"
-        android:id="@+id/bttnChange"
-        />
 </LinearLayout>

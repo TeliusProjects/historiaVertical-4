@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
-    <item
+        android:icon="@drawable/settings"
+        app:showAsAction="ifRoom"/>
+        <!--android:orderInCategory="100"-->
+
+    <!--<item
         android:id="@+id/action_logout"
         android:orderInCategory="100"
         android:title="@string/action_logout"
@@ -20,6 +22,6 @@
         android:id="@+id/action_editProfile"
         android:orderInCategory="100"
         android:title="@string/EditProfile"
-        />
+        />-->
 
 </menu>
