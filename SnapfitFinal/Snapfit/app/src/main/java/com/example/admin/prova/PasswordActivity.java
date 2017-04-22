@@ -48,27 +48,32 @@ public class PasswordActivity extends AppCompatActivity {
                 String newPassword = editNewPass.getText().toString();
                 String reNewPassword = editReNewPass.getText().toString();
 
+                String oldPassword_hash = Encriptacio.md5(oldPassword);
+                String newPassword_hash = Encriptacio.md5(newPassword);
 
-                if (newPassword.equals(reNewPassword)) {
+                if (newPassword.equals(reNewPassword))
+                {
                     JSONArray ArrayPasswords = new JSONArray();
                     JSONObject jPass = new JSONObject();
 
                     try {
                         jPass.put("username", user_name);
-                        jPass.put("oldPassword", oldPassword);
-                        jPass.put("newPassword", newPassword);
+                        jPass.put("oldPassword", oldPassword_hash);
+                        jPass.put("newPassword", newPassword_hash);
 
                         //add the JSONobject with the both passwords to JSON array
                         ArrayPasswords.put(jPass);
 
                         //Shows in the android studio log what we are sending to our webService
 
-                        Log.d("json api", "Json array converted from Passwords:  " + ArrayPasswords.toString());
-
-
                         String JsonData = ArrayPasswords.toString();
 
                         new DoChangePassword().execute(JsonData);
+
+                        Log.d("json api", "Json array converted from Passwords:  " + ArrayPasswords.toString());
+
+
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -86,9 +91,8 @@ public class PasswordActivity extends AppCompatActivity {
 
     class DoChangePassword extends AsyncTask<String, Void, String> {
 
-        PasswordActivity passwordActivity = new PasswordActivity();
 
-        private static final String URL = "http://192.168.134.137/REST/modify.php";
+        private static final String URL = "http://192.168.134.137/REST/changePassword.php";
 
         @Override
         protected String doInBackground(String... Params) {
@@ -123,33 +127,40 @@ public class PasswordActivity extends AppCompatActivity {
 
                 String line;
 
-                while ((line = in.readLine()) != null) {
+                while ((line = in.readLine()) != null)
+                {
                     responseSB.append(line);
                 }
 
                 String result = "";
+
+
                 result = responseSB.toString();
+
+                Log.d("json api", "DoCreateLogIn.doInBackGround Json return: " + result);
+
+
                 JSONObject jobject = new JSONObject(result);
                 boolean isChanged = jobject.getBoolean("isChanged");
 
                 String message = "";
-                if (isChanged) {
+
+                if (isChanged)
+                {
                     message = "You have changed your password";
                     onExecute(message);
 
-                } else {
+                } else
+                {
                     message = "The old password is not correct";
                     onExecute(message);
                 }
 
 
+
                 in.close();
                 out.close();
-                Log.d("json api", "DoCreateLogIn.doInBackGround Json return: " + result);
 
-
-                String user_name = "";
-                String user_email = "";
 
                 httpurlconnection.disconnect();
 
@@ -165,7 +176,7 @@ public class PasswordActivity extends AppCompatActivity {
         }
 
         public void onExecute(String message) {
-            Toast.makeText(passwordActivity.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 
         }
 

@@ -17,9 +17,10 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        final String user_name;
+        final String user_name,mail;
         Intent intent = getIntent();
         user_name = intent.getStringExtra("username");
+        mail = intent.getStringExtra("mail");
 
         TextView txtUser_name = (TextView) findViewById(R.id.txtUser_name);
         ListView list_profile = (ListView) findViewById(R.id.list_Profile);
@@ -37,28 +38,24 @@ public class SettingsActivity extends AppCompatActivity {
         list_account.setAdapter(adapterAccount);
 
 
-        list_profile.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        list_profile.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-                switch (i)
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                switch(i)
                 {
-                    case 1:
-
-                        break;
                     case 2:
-                        Intent changePassword = new Intent(SettingsActivity.this,PasswordActivity.class);
-                        changePassword.putExtra("username",user_name);
-                        startActivity(changePassword);
-
+                            Intent profile = new Intent(SettingsActivity.this,ProfileActivity.class);
+                            profile.putExtra("username",user_name);
+                            profile.putExtra("mail",mail);
                         break;
+                    case 1:
+                        Intent passwords = new Intent(SettingsActivity.this,PasswordActivity.class);
+                        passwords.putExtra("username",user_name);
+                        startActivity(passwords);
+                        break;
+
 
                 }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
     }

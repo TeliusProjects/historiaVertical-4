@@ -45,8 +45,10 @@ public class SignUpActivity extends AppCompatActivity {
                 String password = editTextPassword.getText().toString();
                 String password2 = editRepeatPassword.getText().toString();
 
+                String pass_hash = Encriptacio.md5(password);
+                String pass_hash2 = Encriptacio.md5(password2);
 
-                signUp user = new signUp(username,password,password2,email,email2);
+                signUp user = new signUp(username,pass_hash,pass_hash2,email,email2);
 
                 JSONArray ArrayUser= new JSONArray();
                 JSONObject jUser = new JSONObject();

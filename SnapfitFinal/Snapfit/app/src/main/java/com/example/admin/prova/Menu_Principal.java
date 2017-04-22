@@ -179,6 +179,7 @@ public class Menu_Principal extends AppCompatActivity
 
             Intent settings = new Intent(Menu_Principal.this, SettingsActivity.class);
             settings.putExtra("username", user_name);
+            settings.putExtra("email",user_email);
             startActivity(settings);
             return true;
         }
@@ -272,7 +273,8 @@ public class Menu_Principal extends AppCompatActivity
 
         } else if (id == R.id.nav_settings) {
 
-            Intent settings = new Intent(Menu_Principal.this, PasswordActivity.class);
+            Intent settings = new Intent(Menu_Principal.this, SettingsActivity.class);
+            settings.putExtra("mail",user_email);
             settings.putExtra("username", user_name);
             startActivity(settings);
 

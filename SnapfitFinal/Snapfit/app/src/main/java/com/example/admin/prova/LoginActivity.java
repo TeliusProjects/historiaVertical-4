@@ -46,15 +46,15 @@ public class LoginActivity extends Activity {
                 String user = EditTextUser.getText().toString();
                 String pass = EditTextPassword.getText().toString();
 
+                   String pass_hash = Encriptacio.md5(pass);
 
-                    LogIn log = new LogIn(user,pass);
 
                     JSONArray ArrayLogin = new JSONArray();
                     JSONObject jLogin = new JSONObject();
 
                     try {
-                        jLogin.put("username",log.getUsername());
-                        jLogin.put("Password",log.getPassword());
+                        jLogin.put("username",user);
+                        jLogin.put("Password",pass_hash);
 
                         //add to JSON array
                         ArrayLogin.put(jLogin);
@@ -77,27 +77,7 @@ public class LoginActivity extends Activity {
         });
     }
 
-    /**
-     * Created by admin on 16/03/2017.
-     */
-    class LogIn {
-        private String username;
-        private String Password;
 
-        public LogIn(String username, String Password)
-        {
-            this.username = username;
-            this.Password=Password;
-        }
-
-        public String getPassword() {
-            return Password;
-        }
-
-        public String getUsername() {
-            return username;
-        }
-    }
 
     /**
      * Created by admin on 16/03/2017.

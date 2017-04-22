@@ -35,8 +35,9 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".PopWindow"
-            android:theme="@style/AppTheme.CustomThem"></activity>
-        <activity android:name=".SettingsActivity"></activity>
+            android:theme="@style/AppTheme.CustomThem" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>
