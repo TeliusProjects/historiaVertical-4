@@ -1,0 +1,79 @@
+/* Reseteo universal */
+* {
+	border: 0em;
+	margin: 0em;
+	padding: 0em;
+}
+
+/* Fuentes de la pàgina */
+@font-face {
+	font-family: "Lobster";
+    src: url("../fonts/lobster/Lobster_1.3.otf") format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+/* Modificación de los estilos de la página */
+div {
+	max-width: 100%;
+	text-align: center;
+}
+
+h1, h3 {
+	font-family: "Lobster";
+	margin-top: .1em;
+	text-align: center;
+}
+
+h1 {
+	font-size: 10em;
+}
+
+h3 {
+	margin-top: .3em;
+	font-size: 3em;
+}
+
+h3 a {
+	color: rgb(0, 0, 0);
+	text-decoration: none;
+	-ms-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in;
+    -o-transition: all 0.5s ease-in;
+    -webkit-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+}
+
+h3 a:hover {
+	color: rgb(85, 26, 139);
+    -ms-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    -webkit-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+
+img {
+	margin-top: 5em;
+}
+
+/* Estilos para las clases definidas en las etiquetas HTML */
+.fade {
+	opacity: 1;
+    filter: alpha(opacity=10);
+    -ms-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in;
+    -o-transition: all 0.5s ease-in;
+    -webkit-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+}
+
+.fade:hover {
+	opacity: 0.7;
+    filter: alpha(opacity=7);
+    -ms-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    -webkit-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}

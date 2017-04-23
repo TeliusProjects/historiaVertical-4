@@ -1,0 +1,95 @@
+/* Reseteo universal */
+* {
+	border: 0em;
+	margin: 0em;
+	padding: 0em;
+}
+
+/* Fuentes de la pàgina */
+@font-face {
+	font-family: "Lobster";
+    src: url("../fonts/lobster/Lobster_1.3.otf") format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+/* Modificación de los estilos de la página */
+header {
+	background-color: rgba(128, 128, 128, 0.15);
+    border-bottom: 2px solid;
+    border-bottom-color: #000;
+    box-shadow: 0 2px 0 #757575;
+    max-width: 100%;
+    text-align: center;
+    /* padding: 1.5em; */
+    vertical-align: middle;
+}
+
+h1, nav, a, p {
+	display: inline-block;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+img {
+	margin-left: 1em;
+	margin-bottom: .2em;
+	margin-top: .2em;
+	max-width: 30%;
+}
+
+nav ul {
+	font-size: 1.4em;
+    list-style: none;
+}
+
+nav li {
+    display: inline-block;
+    margin: .5em;
+    padding: 0.1em;
+    vertical-align: top;
+}
+
+nav a {
+    color: rgb(128, 30, 247);
+    display: block;
+    font-family: "Lobster", Arial, Tahoma;
+    font-size: 1.2em;
+    padding: 0.2em;
+    -ms-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in;
+    -o-transition: all 0.5s ease-in;
+    -webkit-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+}
+
+nav a:hover {
+    border-right: 1px solid;
+    border-right-color: rgb(204, 10, 150);
+    border-bottom: 1px solid;
+    border-bottom-color: rgb(204, 10, 150);
+    color: rgb(204, 10, 150);
+    -ms-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    -webkit-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+
+section {
+	font-family: "Lobster";
+	font-size: 5em;
+	margin-top: 3em;
+	text-align: center;
+}
+
+@media (min-width:1280px) {
+    header h1 {
+        text-align: left;
+        width: 35%;
+    }
+    nav {
+        text-align: right;
+        width: 60%;
+    }
+}
