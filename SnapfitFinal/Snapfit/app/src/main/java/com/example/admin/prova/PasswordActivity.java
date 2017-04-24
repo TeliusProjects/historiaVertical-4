@@ -68,10 +68,8 @@ public class PasswordActivity extends AppCompatActivity {
 
                         String JsonData = ArrayPasswords.toString();
 
-                        new DoChangePassword().execute(JsonData);
-
-                        Log.d("json api", "Json array converted from Passwords:  " + ArrayPasswords.toString());
-
+                        DoChangePassword changePassword = (DoChangePassword) new DoChangePassword().execute(JsonData);
+                        changePassword.onPostExecute();
 
 
 
@@ -92,12 +90,14 @@ public class PasswordActivity extends AppCompatActivity {
     class DoChangePassword extends AsyncTask<String, Void, String> {
 
 
-        private static final String URL = "http://192.168.134.137/REST/changePassword.php";
+        private static final String URL = "http://192.168.134.137/REST/modify.php";
+
 
         @Override
         protected String doInBackground(String... Params) {
 
             String JsonData = Params[0];
+
 
             try {
 
@@ -143,19 +143,16 @@ public class PasswordActivity extends AppCompatActivity {
                 JSONObject jobject = new JSONObject(result);
                 boolean isChanged = jobject.getBoolean("isChanged");
 
-                String message = "";
-
-                if (isChanged)
+                String message;
+                if(isChanged)
                 {
-                    message = "You have changed your password";
-                    onExecute(message);
+                    message = "Your password has been changed.";
 
-                } else
+                }else
                 {
-                    message = "The old password is not correct";
-                    onExecute(message);
+                    message = "Your old password is not correct.";
+
                 }
-
 
 
                 in.close();
@@ -174,11 +171,13 @@ public class PasswordActivity extends AppCompatActivity {
 
             return null;
         }
-
-        public void onExecute(String message) {
-            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+        protected void onPostExecute()
+        {
+            Toast.makeText(getApplicationContext(),"Your password has been changed",Toast.LENGTH_SHORT).show();
 
         }
-
     }
+
+
+
 }
