@@ -254,7 +254,7 @@ public class Menu_Principal extends AppCompatActivity
             ).commit();
 
         //boton tags
-        } else if (id == R.id.nav_tags) {
+       // } //else if (id == R.id.nav_tags) {
 
            /* TextView txView = (TextView) findViewById(R.id.content_text);
             TextView txtViewFr = (TextView) findViewById(R.id.content_frase);
@@ -263,13 +263,13 @@ public class Menu_Principal extends AppCompatActivity
             txtViewFr.setVisibility(View.INVISIBLE);
             gvImages.setVisibility(View.INVISIBLE);*/
 
-            Tags_Fragment mylistfragment = Tags_Fragment.newInstance("tags1", "tags2");
+            /*Tags_Fragment mylistfragment = Tags_Fragment.newInstance("tags1", "tags2");
             FragmentManager managertags = getSupportFragmentManager();
             managertags.beginTransaction().replace(
                     R.id.relative_for_fragment,
                     mylistfragment,
                     mylistfragment.getTag()
-            ).commit();
+            ).commit();*/
 
         } else if (id == R.id.nav_settings) {
 

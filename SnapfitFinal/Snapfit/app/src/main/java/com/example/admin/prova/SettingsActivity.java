@@ -28,7 +28,7 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
-        String [] Profile = {"EDIT PROFILE","CHANGE PASSWORD","MAS","MIERDA","QUE", "PONER"};
+        String [] Profile = {"EDIT PROFILE","CHANGE PASSWORD"};
         String [] Account = {"DELETE ACCOUNT","SIGN OUT"};
 
         ListSettingsAdapter adapterProfile = new ListSettingsAdapter(this,Profile);
@@ -43,13 +43,14 @@ public class SettingsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch(i)
                 {
-                    case 2:
-                            Intent profile = new Intent(SettingsActivity.this,ProfileActivity.class);
+                    case 0:
+                            Intent profile = new Intent(SettingsActivity.this, ProfileActivity.class);
                             profile.putExtra("username",user_name);
                             profile.putExtra("mail",mail);
+                            startActivity(profile);
                         break;
                     case 1:
-                        Intent passwords = new Intent(SettingsActivity.this,PasswordActivity.class);
+                        Intent passwords = new Intent(SettingsActivity.this, PasswordActivity.class);
                         passwords.putExtra("username",user_name);
                         startActivity(passwords);
                         break;

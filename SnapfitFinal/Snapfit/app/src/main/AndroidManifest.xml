@@ -37,7 +37,8 @@
             android:name=".PopWindow"
             android:theme="@style/AppTheme.CustomThem" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".ProfileActivity"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"></activity>
     </application>
 
 </manifest>

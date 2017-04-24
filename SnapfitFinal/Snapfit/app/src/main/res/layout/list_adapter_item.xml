@@ -10,6 +10,10 @@
         android:layout_gravity="left"/>
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right">
 
         <ImageView
 
@@ -17,7 +21,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/imgItem"
             android:layout_gravity="right"
+            android:src="@drawable/arrows"
             />
+
+    </LinearLayout>
+
+
+
+
     <!-- android:src="@drawable/arrows"-->
 
 
