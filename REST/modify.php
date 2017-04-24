@@ -40,42 +40,37 @@
 
             'projection' => ['Username' => 1], ['Password' => 1]
         ];
-        $qry = new MongoDB\Driver\Query($filter, $options);
+
+        $qry = new MongoDB\Driver\Query($filter,$options);
        
 
         $rows = $collection->find($qry);
-    
-    foreach ($rows as $row) {
-          
-        if($row['Username']== $username && $row['Password'] == $oldPassword)
+
+        foreach($rows as $row)
         {
 
-            //$collection -> update(array('$set'=> array('Password'=> $newPassword)));
+            if($row['Username']== $username && $row['Password'] == $oldPassword)
+            {
+                $criteria = ['Username' => $row['Username']];
+                $newData = ['$set' => ['Password' => $newPassword]];
 
-            $usercorrect = true;
-            $user_found = $row;
-
+                $collection -> updateOne($criteria,$newData);
+                $usercorrect = true;
+            }
+            
         }
-    }
-
-    if($usercorrect)
-    {      
-        $collection -> update(array('Username'=> $username, '$set'=>array('Password'=> $newPassword)));
 
 
-        $changed = true;
+        if ($usercorrect)
+        {
+            $changed=true;
+            echo json_encode(array('status'=> '1','isChanged' => $changed));
 
-        echo json_encode(array('status'=> '1','isChanged' => $changed));
-    }
-    else
-    {
-
-        $changed = false;
-        echo json_encode(array('status'=> '2','isChanged' => $changed));
-
-    }
-   
-   
+        }else
+        {
+            $changed = false;
+              echo json_encode(array('status'=> '2','isChanged' => $changed));   
+        }
  }
  else
  {
