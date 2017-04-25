@@ -14,7 +14,7 @@ require ('/home/snapfit/vendor/autoload.php');
     $name        = $_POST['name'];
     $birthday    = $_POST['birthday'];
     $phoneNumber = $_POST['phoneNumber'];
-    $sex         = $_POST['sex'];
+    $gender        = $_POST['gender'];
     
 
 
@@ -30,9 +30,27 @@ require ('/home/snapfit/vendor/autoload.php');
         $name        = $value['name'];
         $birthday    = $value['birthday'];
         $phoneNumber = $value['phoneNumber'];
-        $sex         = $value['sex'];
+        $gender         = $value['gender'];
  	}
  }
+ $con = new MongoDB\Client;
+
+ if($con)
+ {
+   $db = $con ->users;
+   $collection -> $db -> user;
+   $filter = array('Username'=>$username);
+   $options= [ 'projection' => ['Username'=> 1]];
+  
+   $qry = new MongoDB\Driver\Query($filter,$options);
+  
+  
+  
+
+ }else{
+     die("db is not connected");
+ }
+ 
 
 
 ?>
