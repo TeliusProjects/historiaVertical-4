@@ -44,7 +44,30 @@ require ('/home/snapfit/vendor/autoload.php');
   
    $qry = new MongoDB\Driver\Query($filter,$options);
   
-  
+    foreach($rows as $row)
+        {
+            if($row['Username']== $username)
+            {
+                $criteria = ['Username' => $row['Username']];
+                $newData = ['$set' => ['Email' => $email, 'Name'=> $name, 
+                                       'Birthday' => $birthday, 'PhoneNumber' => $phoneNumber, 
+                                       'Gender' => $gender]]; 
+               if(empty($email) && empty($name) && empty($birthday) && empty($phonrNumber) && empty($gender))
+               {
+                     echo json_encode(array('email' => $row['Email']
+                                            ,'name' => $row['Name'],
+                                            'birthday' => $row['Birthday'],
+                                            'phoneNumber'=> $row['PhoneNumber'],
+                                            'gender' => $row['Gender']));
+             
+                }
+              else{
+                    $collection -> updateOne($criteria,$newData, ['$upsert' => true]);
+                    $usercorrect = true;
+               }
+            }
+            
+        }
   
 
  }else{
