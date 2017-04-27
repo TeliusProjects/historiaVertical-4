@@ -26,7 +26,7 @@ public class SettingsActivity extends AppCompatActivity {
         ListView list_profile = (ListView) findViewById(R.id.list_Profile);
         ListView list_account = (ListView) findViewById(R.id.list_Account);
 
-
+        txtUser_name.setText(user_name);
 
         String [] Profile = {"EDIT PROFILE","CHANGE PASSWORD"};
         String [] Account = {"DELETE ACCOUNT","SIGN OUT"};

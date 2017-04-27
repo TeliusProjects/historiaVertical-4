@@ -23,6 +23,7 @@ import java.net.URL;
 
 public class PasswordActivity extends AppCompatActivity {
 
+    private boolean isChanged;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,18 +142,7 @@ public class PasswordActivity extends AppCompatActivity {
 
 
                 JSONObject jobject = new JSONObject(result);
-                boolean isChanged = jobject.getBoolean("isChanged");
-
-                String message;
-                if(isChanged)
-                {
-                    message = "Your password has been changed.";
-
-                }else
-                {
-                    message = "Your old password is not correct.";
-
-                }
+                isChanged = jobject.getBoolean("isChanged");
 
 
                 in.close();
@@ -173,7 +163,17 @@ public class PasswordActivity extends AppCompatActivity {
         }
         protected void onPostExecute()
         {
-            Toast.makeText(getApplicationContext(),"Your password has been changed",Toast.LENGTH_SHORT).show();
+            String message;
+            if(isChanged)
+            {
+                message = "Your password has been changed.";
+
+            }else
+            {
+                message = "Your old password is not correct.";
+
+            }
+            Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
 
         }
     }

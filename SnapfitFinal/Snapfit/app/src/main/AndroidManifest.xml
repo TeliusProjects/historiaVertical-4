@@ -38,7 +38,7 @@
             android:theme="@style/AppTheme.CustomThem" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".ProfileActivity"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"></activity>
+            android:theme="@style/ProfileTheme"></activity>
     </application>
 
 </manifest>
