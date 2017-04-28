@@ -2,9 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
     >
+    <!--<item
+        android:id="@+id/BttnExit"
+        android:title="exit"
+        android:icon="@drawable/exit"
+        app:showAsAction="always"
+
+        />-->
     <item
         android:id="@+id/BttnProfile"
         android:title="@string/Bttn_profile"
-        app:showAsAction="ifRoom"/>
+        android:icon="@drawable/checked"
+        app:showAsAction="ifRoom"
+        />
 
 </menu>

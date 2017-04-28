@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/Blue"
     android:id="@+id/activity_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,82 +12,142 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.admin.prova.ProfileActivity">
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="32dp"
+    android:paddingBottom="5dp">
 
-    <!--<android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:menu="@menu/menu_profile" />-->
-
+        android:layout_height="wrap_content"
+        android:src="@drawable/username"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="5dp"/>
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:background="@drawable/editext2"
+        android:background="@drawable/editext"
         android:hint="username"
-        android:textColorHint="@android:color/white"
-        android:textColor="@android:color/white"
         android:id="@+id/editUsername"
         android:editable="false"
-        android:layout_marginBottom="5dp"/>
+
+       />
 
 
-    <EditText
+
+</LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:textSize="20sp"
-        android:hint="email"
-        android:textColorHint="@android:color/white"
-        android:textColor="@android:color/white"
-        android:background="@drawable/editext2"
-        android:id="@+id/editEmail"
-        android:layout_marginBottom="5dp"/>
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/email"
+            android:layout_marginTop="6dp"
+            android:layout_marginRight="5dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:textSize="20sp"
+            android:hint="email"
+            android:background="@drawable/editext"
+            android:id="@+id/editEmail"
+           />
+
+
+    </LinearLayout>
 
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="32dp"
         android:hint="Name"
-        android:textColorHint="@android:color/white"
-        android:textColor="@android:color/white"
-        android:background="@drawable/editext2"
+        android:background="@drawable/editext"
         android:id="@+id/editName"
         android:layout_marginBottom="32dp"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:hint="Birthday(DD/MM/YYYY)"
-        android:textColorHint="@android:color/white"
-        android:textColor="@android:color/white"
-        android:background="@drawable/editext2"
-        android:id="@+id/editBirthday"
-        android:layout_marginBottom="5dp"/>
 
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:hint="phoneNumber"
-        android:textColorHint="@android:color/white"
-        android:textColor="@android:color/white"
-        android:background="@drawable/editext2"
-        android:id="@+id/editPhoneNumber"
-        android:layout_marginBottom="5dp"/>
-
-    <Spinner
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PRIVATE INFORMATION"
+        android:layout_marginBottom="3dp"/>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:id="@+id/spinnerGender"
-        android:background="@drawable/editext2"/>
+        android:paddingBottom="5dp"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/birthday"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"/>
 
 
-<Button
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:hint="Birthday(DD/MM/YYYY)"
+            android:background="@drawable/editext"
+            android:id="@+id/editBirthday"
+            />
+    </LinearLayout>
+
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="DONE"
-    android:id="@+id/bttnChangeProfile"/>
+    android:paddingBottom="5dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/phone"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="5dp"/>
+
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:hint="phone number"
+        android:background="@drawable/editext"
+        android:id="@+id/editPhoneNumber"
+        />
+</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gender"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="5dp"/>
+
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerGender"
+            android:background="@drawable/editext"
+            />
+
+    </LinearLayout>
+
+
 
 </LinearLayout>

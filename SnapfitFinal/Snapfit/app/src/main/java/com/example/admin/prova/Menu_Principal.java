@@ -184,12 +184,6 @@ public class Menu_Principal extends AppCompatActivity
             return true;
         }
 
-        //boton del action bar (arriba) el logout
-        //if(id == R.id.action_logout) {
-          //  Intent login = new Intent(Menu_Principal.this, MainActivity.class);
-            //startActivity(login);
-            //return true;
-        //}
         return super.onOptionsItemSelected(item);
     }
 
