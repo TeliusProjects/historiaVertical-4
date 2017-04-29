@@ -12,6 +12,30 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.admin.prova.ProfileActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/businessman"/>
+        <TextView
+            android:id="@+id/txtUser_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Change profile picture"
+            />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/editext"/>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -50,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/email"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="5dp"/>
 
         <EditText
@@ -112,8 +136,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/phone"
-        android:layout_marginTop="6dp"
-        android:layout_marginRight="5dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="12dp"/>
 
 
 
