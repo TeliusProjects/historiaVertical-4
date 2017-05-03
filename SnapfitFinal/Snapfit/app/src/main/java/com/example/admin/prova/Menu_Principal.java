@@ -184,6 +184,12 @@ public class Menu_Principal extends AppCompatActivity
             return true;
         }
 
+        //boton del action bar (arriba) el logout
+        //if(id == R.id.action_logout) {
+          //  Intent login = new Intent(Menu_Principal.this, MainActivity.class);
+            //startActivity(login);
+            //return true;
+        //}
         return super.onOptionsItemSelected(item);
     }
 
@@ -247,23 +253,6 @@ public class Menu_Principal extends AppCompatActivity
                     mylistfragment.getTag()
             ).commit();
 
-        //boton tags
-       // } //else if (id == R.id.nav_tags) {
-
-           /* TextView txView = (TextView) findViewById(R.id.content_text);
-            TextView txtViewFr = (TextView) findViewById(R.id.content_frase);
-
-            txView.setVisibility(View.INVISIBLE);
-            txtViewFr.setVisibility(View.INVISIBLE);
-            gvImages.setVisibility(View.INVISIBLE);*/
-
-            /*Tags_Fragment mylistfragment = Tags_Fragment.newInstance("tags1", "tags2");
-            FragmentManager managertags = getSupportFragmentManager();
-            managertags.beginTransaction().replace(
-                    R.id.relative_for_fragment,
-                    mylistfragment,
-                    mylistfragment.getTag()
-            ).commit();*/
 
         } else if (id == R.id.nav_settings) {
 

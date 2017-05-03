@@ -12,7 +12,7 @@
     tools:context="com.example.admin.prova.Menu_Principal"
     tools:showIn="@layout/app_bar_menu__principal"
     android:id="@+id/relative_for_fragment"
-    android:background="@color/background_content">
+    android:background="@color/back_content">
 
 
 </RelativeLayout>

@@ -8,10 +8,12 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    android:background="@color/Blue">
+    android:background="@color/All_Background">
+
         <ImageView
             android:layout_width="128dp"
             android:layout_height="128dp"
+            android:src="@drawable/logo256"
             android:id="@+id/LogoPagPrincipal"
             android:layout_gravity="center"
             android:layout_marginTop="0.74in"/>
@@ -24,13 +26,13 @@
             android:layout_gravity="center"
             android:layout_marginTop="1.15in">
 
-                <ImageButton
+                <!--<ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btnLogIn"
                     android:paddingRight="10dp"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"/>
+                    android:background="#316CB5"/>
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -38,14 +40,50 @@
                     android:id="@+id/btnSignIn"
                     android:paddingLeft="10dp"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"/>
+                    android:background="#316CB5"/>
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btnMenu"
                     android:paddingLeft="10dp"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"/>
+                    android:background="#316CB5"/>-->
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnLogIn"
+                    android:text="Login"
+                    android:textColor="#0B004F"
+                    android:layout_gravity="center"
+                    android:background="@drawable/colorbutton"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="     "/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnSignIn"
+                    android:text="Sign in"
+                    android:textColor="#0B004F"
+                    android:layout_gravity="center"
+                    android:background="@drawable/colorbutton"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="     "/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnMenu"
+                    android:text="Main Menu"
+                    android:textColor="#0B004F"
+                    android:layout_gravity="center"
+                    android:background="@drawable/colorbutton"/>
+
+
 
 
 

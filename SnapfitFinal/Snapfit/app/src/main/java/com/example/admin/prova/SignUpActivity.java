@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -32,7 +33,7 @@ public class SignUpActivity extends AppCompatActivity {
         final EditText editRepeatPassword = (EditText) findViewById(R.id.editRepeatPassword);
         final EditText editTextMail = (EditText) findViewById(R.id.editTextMail);
         final EditText editTextConfirmMail = (EditText) findViewById(R.id.editTextConfirmMail);
-        ImageButton buttonSignUp = (ImageButton) findViewById(R.id.btnSignUp);
+        Button buttonSignUp = (Button) findViewById(R.id.btnSignUp);
 
 
         buttonSignUp.setOnClickListener(new View.OnClickListener() {

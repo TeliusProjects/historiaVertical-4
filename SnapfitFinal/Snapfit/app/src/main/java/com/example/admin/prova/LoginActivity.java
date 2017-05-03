@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -30,7 +31,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        ImageButton BtnLogIn = (ImageButton) findViewById(R.id.btnLogIn);
+        Button BtnLogIn = (Button) findViewById(R.id.btnLogIn);
         LinearLayout layout = (LinearLayout) findViewById(R.id.layoutLogin);
         //TextInputEditText inputEditTextUser = (TextInputEditText) findViewById(R.id.editTextUser);
         final EditText EditTextUser = (EditText) findViewById(R.id.editTextUser);

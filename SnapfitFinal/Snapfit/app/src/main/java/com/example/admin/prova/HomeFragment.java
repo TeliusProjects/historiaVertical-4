@@ -90,9 +90,9 @@ public class HomeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        FillList fillList = new FillList();
+        //FillList fillList = new FillList();
 
-        fillList.execute();
+        //fillList.execute();
     }
 
     public class FillList extends AsyncTask<String,Void,ArrayList<String>> {
