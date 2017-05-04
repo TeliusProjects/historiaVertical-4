@@ -2,7 +2,6 @@ package com.example.admin.prova;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,13 +19,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class LoginActivity extends Activity {
 
-    private static final String URL = "http://192.168.134.137/REST/login.php";
+    private static final String URL = "http://192.168.1.47/REST/login.php";
 
     private  LogIn log;
     @Override
@@ -87,42 +85,6 @@ public class LoginActivity extends Activity {
     /**
      * Created by admin on 16/03/2017.
      */
-    class LogIn implements Serializable {
-        private String username;
-        private String Password;
-        private Bitmap profileImageBitmap;
-        private String profileImageName;
-        public LogIn(String username, String Password)
-        {
-            this.username = username;
-            this.Password=Password;
-        }
-
-        public String getPassword() {
-            return Password;
-        }
-
-        public String getUsername() {
-            return username;
-        }
-
-        public Bitmap getProfileImageBitmap() {
-            return profileImageBitmap;
-        }
-
-        public void setProfileImageBitmap(Bitmap profileImageBitmap) {
-            this.profileImageBitmap = profileImageBitmap;
-        }
-
-        public String getProfileImageName() {
-            return profileImageName;
-        }
-
-        public void setProfileImageName(String profileImageName) {
-            this.profileImageName = profileImageName;
-        }
-    }
-
     /**
      * Created by admin on 16/03/2017.
      */
@@ -169,13 +131,6 @@ public class LoginActivity extends Activity {
                 String result= "";
                 result = responseSB.toString();
 
-                Log.d("json api","DoCreateLogIn.doInBackGround Json return: " + result);
-
-                in.close();
-                out.close();
-
-                httpurlconnection.disconnect();
-
                 JSONObject jobject = new JSONObject(result);
                 String user_name = "";
                 String user_email = "";
@@ -199,7 +154,12 @@ public class LoginActivity extends Activity {
 
                 }
 
+                in.close();
+                out.close();
+                Log.d("json api","DoCreateLogIn.doInBackGround Json return: " + result);
 
+
+                httpurlconnection.disconnect();
 
 
 

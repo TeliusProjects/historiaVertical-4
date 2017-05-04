@@ -79,7 +79,7 @@ public class Menu_Principal extends AppCompatActivity
     private final int PHOTO_CODE = 13323;
     private final int SELECT_PICTURE = 12345;
     private Bitmap bitmap;
-    private LoginActivity.LogIn logData;
+    private LogIn logData;
     FloatingActionButton fabcamera;
     String selectedPhoto;
     boolean entrado  = false;
@@ -120,15 +120,7 @@ public class Menu_Principal extends AppCompatActivity
         user_name  = intent.getStringExtra("Username");
         user_email = intent.getStringExtra("Email");
         imageURL   = intent.getStringExtra("ProfileImage");
-        logData    = (LoginActivity.LogIn) intent.getSerializableExtra("UserObj");
-
-        if(!imageURL.equals("null")){
-            Picasso
-                    .with(Menu_Principal.this)
-                    .load(imageURL)
-                    .transform(new CircleTransform())
-                    .into(bussinesImageView);
-        }
+        logData    = (LogIn) intent.getSerializableExtra("UserObj");
 
         setContentView(R.layout.activity_menu__principal);
 
@@ -185,6 +177,14 @@ public class Menu_Principal extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         bussinesImageView = (ImageView) findViewById(R.id.imageViewUser);
+
+        if(!imageURL.equals("null")){
+            Picasso
+                    .with(Menu_Principal.this)
+                    .load(imageURL)
+                    .transform(new CircleTransform())
+                    .into(bussinesImageView);
+        }
 
         bussinesImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -352,10 +352,10 @@ public class Menu_Principal extends AppCompatActivity
 
 
     private void requestPermission(String option) {
-        String[] permissions = new String[]{android.Manifest.permission.CAMERA,
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        String[] permissions = new String[]{Manifest.permission.CAMERA,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
-        String[] permissions2 = new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE};
+        String[] permissions2 = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
 
         if (option.equals("Tomar foto")) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -378,99 +378,101 @@ public class Menu_Principal extends AppCompatActivity
 
                 Log.d(TAG, selectedPhoto);
                 try {
-                        bitmap = ImageLoader.init().from(selectedPhoto).requestSize(512, 512).getBitmap();
+                    bitmap = ImageLoader.init().from(selectedPhoto).requestSize(512, 512).getBitmap();
 
-                        if(!clicked) {
+                    if(!clicked) {
 
-                           final  Intent pictureIntent = new Intent(Menu_Principal.this,PictureActivity.class);
-                            String encodedImage = com.example.admin.prova.ImageBase64.encode(bitmap);
-                            bussinesImageView.buildDrawingCache (true);
-                            Bitmap bitmap = bussinesImageView.getDrawingCache(true);
-
-                            BitmapDrawable drawable = (BitmapDrawable)bussinesImageView.getDrawable();
-                            Bitmap bitmap_user_image = drawable.getBitmap();
-
-                            String encoded_profileImage = com.example.admin.prova.ImageBase64.encode(bitmap_user_image);
-                            String imageProfileName = bussinesImageView.getResources().getResourceEntryName(R.id.imageViewUser);
+                        final  Intent pictureIntent = new Intent(Menu_Principal.this,PictureActivity.class);
+                        String encodedImage = com.example.admin.prova.ImageBase64.encode(bitmap);
 
 
-                            Log.d(TAG,encodedImage);
-                            String imageName = cameraPhoto.getFileName();
-                            HashMap<String,String> postData = new HashMap<String, String>();
 
-                            postData.put("image", encodedImage);
-                            postData.put("username", user_name);
-                            postData.put("imageName", imageName);
-                            postData.put("imageProfile", encoded_profileImage);
-                            postData.put("imageProfileName", imageProfileName);
+                        String encoded_profileImage = logData.getEncoded_profileImageBitmap();
+                        String imageProfileName = logData.getProfileImageName();
 
-                            PostResponseAsyncTask task = new PostResponseAsyncTask(Menu_Principal.this, postData, new AsyncResponse() {
-                                @Override
-                                public void processFinish(String s) {
 
-                                    try {
-                                        JSONObject jsonObject = new JSONObject(s);
-                                        String status = jsonObject.getString("Status");
+                        Log.d(TAG,encodedImage);
+                        String imageName = cameraPhoto.getFileName();
+                        HashMap<String,String> postData = new HashMap<String, String>();
 
-                                        if(status.equals("200")){
-                                            result = s;
-                                            Toast.makeText(getApplicationContext(), "Foto enviada!", Toast.LENGTH_LONG).show();
-                                            pictureIntent.putExtra("image", selectedPhoto);
-                                            pictureIntent.putExtra("resultado", result);
-                                            startActivity(pictureIntent);
-                                        }
-                                        else {
-                                            Toast.makeText(getApplicationContext(), "Foto no enviada!", Toast.LENGTH_LONG).show();
-                                        }
-                                    }catch (JSONException e) {
-                                        e.printStackTrace();
+                        postData.put("image", encodedImage);
+                        postData.put("username", user_name);
+                        postData.put("imageName", imageName);
+                        postData.put("imageProfile", encoded_profileImage);
+                        postData.put("imageProfileName", imageProfileName);
+
+                        PostResponseAsyncTask task = new PostResponseAsyncTask(Menu_Principal.this, postData, new AsyncResponse() {
+                            @Override
+                            public void processFinish(String s) {
+
+                                try {
+                                    JSONObject jsonObject = new JSONObject(s);
+                                    String status = jsonObject.getString("Status");
+                                    if(status.equals("200")){
+                                        Toast.makeText(getApplicationContext(), "Foto enviada!", Toast.LENGTH_LONG).show();
                                     }
 
-                                }
-                            });
-
-                            task.execute("http://192.168.1.48/REST/file_upload.php");
-                            task.setEachExceptionsHandler(new EachExceptionsHandler() {
-                                @Override
-                                public void handleIOException(IOException e) {
-
-                                    Toast.makeText(getApplicationContext(), "No se ha podido conectar al servidor", Toast.LENGTH_LONG).show();
-                                }
-
-                                @Override
-                                public void handleMalformedURLException(MalformedURLException e) {
-                                    Toast.makeText(getApplicationContext(), "Error en la url", Toast.LENGTH_LONG).show();
+                                    //if(status.equals("200")){
+                                    //    result = s;
+                                    //    Toast.makeText(getApplicationContext(), "Foto enviada!", Toast.LENGTH_LONG).show();
+                                    //    pictureIntent.putExtra("image", selectedPhoto);
+                                    //    pictureIntent.putExtra("resultado", result);
+                                    //    startActivity(pictureIntent);
+                                    //    }
+                                    else {
+                                        Toast.makeText(getApplicationContext(), "Foto no enviada!", Toast.LENGTH_LONG).show();
+                                    }
+                                }catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
 
-                                @Override
-                                public void handleProtocolException(ProtocolException e) {
+                            }
+                        });
 
-                                    Toast.makeText(getApplicationContext(), "Error del protocolo", Toast.LENGTH_LONG).show();
-                                }
+                        task.execute("http://192.168.1.47/REST/file_upload.php");
+                        task.setEachExceptionsHandler(new EachExceptionsHandler() {
+                            @Override
+                            public void handleIOException(IOException e) {
 
-                                @Override
-                                public void handleUnsupportedEncodingException(UnsupportedEncodingException e) {
+                                Toast.makeText(getApplicationContext(), "No se ha podido conectar al servidor", Toast.LENGTH_LONG).show();
+                            }
 
-                                    Toast.makeText(getApplicationContext(), "Error en la codificacion de la imagen", Toast.LENGTH_LONG).show();
-                                }
-                            });
-                        }else{
-                            logData.setProfileImageBitmap(ImageLoader.init().from(selectedPhoto).getBitmap());
-                            File file = new File(selectedPhoto);
-                            logData.setProfileImageName(file.getName());
-                            Picasso
-                                    .with(Menu_Principal.this)
-                                    .load(selectedPhoto)
-                                    .transform(new CircleTransform())
-                                    .into(bussinesImageView);
+                            @Override
+                            public void handleMalformedURLException(MalformedURLException e) {
+                                Toast.makeText(getApplicationContext(), "Error en la url", Toast.LENGTH_LONG).show();
+                            }
 
-                            clicked = false;
-                        }
-                    } catch (FileNotFoundException e) {
-                        Toast.makeText(getApplicationContext(), "Error mientras se cargaba la foto.", Toast.LENGTH_LONG).show();
+                            @Override
+                            public void handleProtocolException(ProtocolException e) {
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                                Toast.makeText(getApplicationContext(), "Error del protocolo", Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void handleUnsupportedEncodingException(UnsupportedEncodingException e) {
+
+                                Toast.makeText(getApplicationContext(), "Error en la codificacion de la imagen", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }else{
+                        bitmap = ImageLoader.init().from(selectedPhoto).getBitmap();
+                        String encoding = com.example.admin.prova.ImageBase64.encode(bitmap);
+                        logData.setEncoded_profileImageBitmap(encoding);
+                        File file = new File(selectedPhoto);
+                        logData.setProfileImageName(file.getName());
+                        Picasso
+                                .with(Menu_Principal.this)
+                                .load(selectedPhoto)
+                                .transform(new CircleTransform())
+                                .into(bussinesImageView);
+
+                        clicked = false;
+                    }
+                } catch (FileNotFoundException e) {
+                    Toast.makeText(getApplicationContext(), "Error mientras se cargaba la foto.", Toast.LENGTH_LONG).show();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             } else if (requestCode == SELECT_PICTURE) {
 
@@ -480,22 +482,19 @@ public class Menu_Principal extends AppCompatActivity
                 galleryPhoto.setPhotoUri(uri);
                 String photoPath = galleryPhoto.getPath();
                 selectedPhoto = photoPath;
+                Bitmap bitmap;
+
                 Log.d(TAG, photoPath);
 
                 try {
-                    Bitmap bitmap = ImageLoader.init().from(photoPath).requestSize(512, 512).getBitmap();
+                    bitmap  = ImageLoader.init().from(photoPath).requestSize(512, 512).getBitmap();
 
                     if(!clicked) {
                         final Intent pictureIntent = new Intent(Menu_Principal.this,PictureActivity.class);
                         String encodedImage = com.example.admin.prova.ImageBase64.encode(bitmap);
                         Log.d(TAG,encodedImage);
-                            bussinesImageView.buildDrawingCache (true);
-                            Bitmap bitmap_selectedPicture = bussinesImageView.getDrawingCache(true);
 
-                        BitmapDrawable drawable = (BitmapDrawable)bussinesImageView.getDrawable();
-                        Bitmap bitmap_user_image = drawable.getBitmap();
-
-                        String encoded_profileImage = com.example.admin.prova.ImageBase64.encode(logData.getProfileImageBitmap());
+                        String encoded_profileImage = logData.getEncoded_profileImageBitmap();
                         String imageProfileName = logData.getProfileImageName();
 
                         String path = galleryPhoto.getPath();
@@ -535,7 +534,7 @@ public class Menu_Principal extends AppCompatActivity
 
                             }
                         });
-                        task.execute("http://192.168.1.48/REST/file_upload.php");
+                        task.execute("http://192.168.1.47/REST/file_upload.php");
                         task.setEachExceptionsHandler(new EachExceptionsHandler() {
                             @Override
                             public void handleIOException(IOException e) {
@@ -562,7 +561,9 @@ public class Menu_Principal extends AppCompatActivity
                         });
                     }else{
                         File file_profile = new File(photoPath);
-                        logData.setProfileImageBitmap(bitmap);
+                        bitmap = ImageLoader.init().from(photoPath).getBitmap();
+                        String encoding = com.example.admin.prova.ImageBase64.encode(bitmap);
+                        logData.setEncoded_profileImageBitmap(encoding);
                         logData.setProfileImageName(file_profile.getName());
                         Picasso
                                 .with(Menu_Principal.this)
@@ -574,7 +575,6 @@ public class Menu_Principal extends AppCompatActivity
                 } catch (FileNotFoundException e) {
                     Toast.makeText(getApplicationContext(), "Error mientras se escogía la foto.", Toast.LENGTH_LONG).show();
                 }
-
             }
         }
     }
