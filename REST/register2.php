@@ -1,37 +1,19 @@
 <?php
 
  //require_once 'DB_Connect.php';
-require ('/home/snapfit/vendor/autoload.php');
-//header('Content-type: application/json');
+ require ('/home/snapfit/vendor/autoload.php');
     //define('WP_CACHE', true);
 
+if(isset($_POST['bttn_register'])){
 
-	$entityBody = file_get_contents('php://input');
-    $body = json_decode($entityBody,true);
-
-//if($_SERVER['REQUEST_METHOD'] == 'POST')
-
-if(empty($body)){
-		    $user           = $_POST['username'];
-        $password       = $_POST['password'];
-        $password2      = $_POST['password2'];
-        $email          = $_POST['Email'];
-        $confirmEmail   = $_POST['Email2'];
-       
-}else{
-    header('Content-type: application/json');
     
-    foreach ($body as $value)
-	{
-        $user           = $value['username'];
-        $password       = $value['password'];
-        $password2      = $value['password2'];
-        $email          = $value['Email'];
-        $confirmEmail   = $value['Email2'];
-        
-    }
-}
- 
+
+    $user=$_POST['username'];
+    $email=$_POST['Email'];
+    $confirmEmail=$_POST['Email2'];
+    $password=$_POST['password'];
+    $password2=$_POST['password2'];
+
     $error = array();
 
         if(empty($user)){
@@ -83,8 +65,7 @@ if(empty($body)){
             
                  //checking for existing user
                  $rows = $collection->find($query);
-
-                 foreach ($rows as $row) {
+                    foreach ($rows as $row) {
                         # code...
                        //if($row['email'] == $email){
                          //   $email_correct = true;
@@ -92,10 +73,11 @@ if(empty($body)){
 
                        }
                 
-                 if(empty($body)){
+                 
                  //if($email_correct){
-                   if($row['Email'] != $email && $row['Username'] != $user){
-                        $document = array(
+                   if($row['Email'] != $email && $row['Username'] != $user) 
+                   {
+                   $document = array(
                         'Username'=>$user,
                         'Email'=>$email,
                         'Password'=>md5($password),
@@ -115,33 +97,9 @@ if(empty($body)){
                   //$connection->execduteBulkWrite('users.user', $bulk);
                  }else{
                     //var_dump($resultado);
+                     var_dump($row);
                      echo "Email is already existed.Please register with another Email id!.";
                  }
-             }else{
-                if($row['Email'] != $email && $row['Username'] != $user){
-                        $document = array(
-                        'Username'=>$user,
-                        'Email'=>$email,
-                        'Password'=>$password,
-                        'ProfileImage' => "null"
-                        ); 
-                    
-                     $insertOneResult=$collection->insertOne($document);
-
-                     if($insertOneResult){
-                        echo 'Hi there ' .$user . ' You are successfully registered.' ;
-                         
-                     }else{
-                        echo "The user wasn't registered";
-                     }
-                  //$bulk->insert($saveUser);
-
-                  //$connection->execduteBulkWrite('users.user', $bulk);
-                 }else{
-                    //var_dump($resultado);
-                     echo "Email is already existed.Please register with another Email id!.";
-                 }
-             }
 
              }else{
 
@@ -154,5 +112,5 @@ if(empty($body)){
                 echo $err.'</br>';
                 }
             }
-
+}
 ?>

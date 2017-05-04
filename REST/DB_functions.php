@@ -12,20 +12,12 @@ class DB_functions{
 
 		$db = new DB_Connect();
 
-		$this ->connection = $db->connect();
+		$this->connection = $db->user;
 	}
 
 	function __destruc(){
 
 
-
-	}
-	public function storeUser($username, $password,$email){
-
-		$uuid = uniqid("", true);
-		$hash = $this->hashSSHA($password);
-		$encrypted_password = $hash['encrypted'];
-		$salt = $hash["salt"];
 
 	}
 	
