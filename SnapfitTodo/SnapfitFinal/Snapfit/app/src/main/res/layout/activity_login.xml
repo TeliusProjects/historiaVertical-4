@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="16dp"
+    android:orientation="vertical"
+    android:id="@+id/layoutLogin"
+    android:background="@color/All_Background">
+
+
+
+    <ImageView
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:src="@drawable/logo256"
+        android:layout_gravity="center"
+        android:layout_marginTop="0.4in"
+        android:layout_marginBottom="0.1in"/>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:background="#d3f2f8ff">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log In"
+            android:textColor="#5CBBCC"
+            android:textSize="60dp"
+            android:layout_gravity="center" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/username"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginRight="5dp"/>
+            <EditText
+                android:id="@+id/editTextUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:inputType="textVisiblePassword"
+                android:hint="user or email"
+                android:layout_marginTop="30dp"
+                android:textColorHint="@android:color/black"
+                android:textColor="@android:color/black"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
+                android:theme="@style/border"
+                android:background="@drawable/editext"
+                android:layout_marginRight="5dp"
+                />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/username"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginRight="5dp"/>
+
+
+        <EditText
+            android:id="@+id/editTextPass"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:inputType="textPassword"
+            android:hint="password"
+            android:textColorHint="@android:color/black"
+            android:textColor="@android:color/black"
+            android:singleLine="true"
+            android:imeOptions="actionDone"
+            android:theme="@style/border"
+            android:background="@drawable/editext"
+            android:layout_marginRight="5dp"
+            />
+
+    </LinearLayout>
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnLogIn"
+                android:text="Log In"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/colorbutton"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+
+                />
+
+    </LinearLayout>
+</LinearLayout>
