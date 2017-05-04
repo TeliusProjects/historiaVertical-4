@@ -32,11 +32,14 @@
         </activity>
         <activity android:name=".LoginActivity"
             android:screenOrientation="portrait"/>
+
         <activity android:name=".SignUpActivity"
             android:screenOrientation="portrait"/>
+
         <activity android:name=".PasswordActivity"
             android:theme="@style/ProfileTheme"
             android:label="Change Password"/>
+
         <activity
             android:name=".SettingsActivity"
             android:label="Settings"/>

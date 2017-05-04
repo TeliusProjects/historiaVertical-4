@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -25,7 +26,7 @@ import java.net.URL;
 
 public class LoginActivity extends Activity {
 
-    private static final String URL = "http://192.168.1.48/REST/login.php";
+    private static final String URL = "http://192.168.134.137/REST/login.php";
 
     private  LogIn log;
     @Override
@@ -33,7 +34,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        ImageButton BtnLogIn = (ImageButton) findViewById(R.id.btnLogIn);
+        Button BtnLogIn = (Button) findViewById(R.id.btnLogIn);
         LinearLayout layout = (LinearLayout) findViewById(R.id.layoutLogin);
         //TextInputEditText inputEditTextUser = (TextInputEditText) findViewById(R.id.editTextUser);
         final EditText EditTextUser = (EditText) findViewById(R.id.editTextUser);
@@ -168,6 +169,13 @@ public class LoginActivity extends Activity {
                 String result= "";
                 result = responseSB.toString();
 
+                Log.d("json api","DoCreateLogIn.doInBackGround Json return: " + result);
+
+                in.close();
+                out.close();
+
+                httpurlconnection.disconnect();
+
                 JSONObject jobject = new JSONObject(result);
                 String user_name = "";
                 String user_email = "";
@@ -191,12 +199,7 @@ public class LoginActivity extends Activity {
 
                 }
 
-                in.close();
-                out.close();
-                Log.d("json api","DoCreateLogIn.doInBackGround Json return: " + result);
 
-
-                httpurlconnection.disconnect();
 
 
 

@@ -24,20 +24,23 @@ public class MainActivity extends AppCompatActivity {
         Button BtnSignIn = (Button) findViewById(R.id.btnSignIn);
         Button btnMenu  = (Button)  findViewById(R.id.btnMenu);
 
-        //logoPagPrin.setImageResource(R.drawable.logo256);
+        logoPagPrin.setImageResource(R.drawable.logo256);
         /*BtnLogIn.setImageResource(R.drawable.login);
         BtnSignIn.setImageResource(R.drawable.signup);
         btnMenu.setImageResource(R.drawable.signup);*/
 
         BtnLogIn.setOnClickListener(new View.OnClickListener()
         {
+
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
+
                 Intent intent = new Intent(MainActivity.this,LoginActivity.class);
                 startActivity(intent);
             }
+
         });
+
         BtnSignIn.setOnClickListener(new View.OnClickListener()
         {
             @Override
