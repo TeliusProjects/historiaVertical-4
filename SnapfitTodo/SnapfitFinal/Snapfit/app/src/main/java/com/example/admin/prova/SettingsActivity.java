@@ -72,40 +72,31 @@ public class SettingsActivity extends AppCompatActivity {
 
                         break;
                     case 1:
+                        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SettingsActivity.this);
+
+                        alertDialogBuilder.setMessage("Are you sure you want to exit?");
+                        alertDialogBuilder.setTitle("LogOut");
 
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
 
-                        builder.setTitle("Log out");
-                        builder.setMessage("Are you sure you want to exit?");
 
-                        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-
-                            public void onClick(DialogInterface dialog, int which) {
-
-                                // Do nothing but close the dialog
-
-                                dialog.dismiss();
+                        alertDialogBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
                                 Intent logOut = new Intent(SettingsActivity.this, MainActivity.class);
-                                Toast.makeText(getApplicationContext(),"",Toast.LENGTH_LONG).show();
                                 startActivity(logOut);
 
                             }
                         });
-
-                        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-
+                        alertDialogBuilder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                            public void onClick(DialogInterface dialogInterface, int i) {
 
-                                // Do nothing
-                                dialog.dismiss();
                             }
                         });
 
-                        AlertDialog alert = builder.create();
-                        alert.show();
-
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
 
                         break;
 

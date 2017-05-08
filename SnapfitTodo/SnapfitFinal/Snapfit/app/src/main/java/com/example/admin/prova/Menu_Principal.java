@@ -534,7 +534,7 @@ public class Menu_Principal extends AppCompatActivity
 
                             }
                         });
-                        task.execute("http://192.168.1.47/REST/file_upload.php");
+                        task.execute("http://192.168.1.236/REST/file_upload.php");
                         task.setEachExceptionsHandler(new EachExceptionsHandler() {
                             @Override
                             public void handleIOException(IOException e) {

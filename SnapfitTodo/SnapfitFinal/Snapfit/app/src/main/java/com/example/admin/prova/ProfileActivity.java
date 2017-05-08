@@ -163,7 +163,7 @@ public class ProfileActivity extends AppCompatActivity {
     class DoEditProfile extends AsyncTask<String, Void, String> {
 
 
-        private static final String URL = "http://192.168.134.137/REST/modifyProfile.php";
+        private static final String URL = "http://192.168.1.236/REST/modifyProfile.php";
 
 
         @Override
