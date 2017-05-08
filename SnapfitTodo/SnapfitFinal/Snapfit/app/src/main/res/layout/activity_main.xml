@@ -70,24 +70,6 @@
                     android:layout_gravity="center"
                     android:background="@drawable/colorbutton"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="     "/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btnMenu"
-                    android:text="Main Menu"
-                    android:textColor="#0B004F"
-                    android:layout_gravity="center"
-                    android:background="@drawable/colorbutton"/>
-
-
-
-
-
         </LinearLayout>
-
 
 </LinearLayout>

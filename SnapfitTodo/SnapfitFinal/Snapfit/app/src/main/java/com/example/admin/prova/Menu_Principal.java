@@ -412,13 +412,13 @@ public class Menu_Principal extends AppCompatActivity
                                         Toast.makeText(getApplicationContext(), "Foto enviada!", Toast.LENGTH_LONG).show();
                                     }
 
-                                    //if(status.equals("200")){
-                                    //    result = s;
-                                    //    Toast.makeText(getApplicationContext(), "Foto enviada!", Toast.LENGTH_LONG).show();
-                                    //    pictureIntent.putExtra("image", selectedPhoto);
-                                    //    pictureIntent.putExtra("resultado", result);
-                                    //    startActivity(pictureIntent);
-                                    //    }
+                                    if(status.equals("200")){
+                                       result = s;
+                                      Toast.makeText(getApplicationContext(), "Foto enviada!", Toast.LENGTH_LONG).show();
+                                      pictureIntent.putExtra("image", selectedPhoto);
+                                      pictureIntent.putExtra("resultado", result);
+                                      startActivity(pictureIntent);
+                                     }
                                     else {
                                         Toast.makeText(getApplicationContext(), "Foto no enviada!", Toast.LENGTH_LONG).show();
                                     }
