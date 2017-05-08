@@ -35,7 +35,7 @@
     <string name="ChangePass">Change password</string>
     <string name="oldPass">Old password</string>
     <string name="newPass">New password</string>
-    <string name="reNewPass">Repeat your password</string>
+    <string name="reNewPass">Repeat your new password</string>
     <string name="BttnChange">CHANGE</string>
     <string name="EditProfile">Edit profile</string>
     <string name="Bttn_profile">DONE</string>
