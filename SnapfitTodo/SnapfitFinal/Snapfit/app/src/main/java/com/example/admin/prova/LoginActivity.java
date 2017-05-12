@@ -24,7 +24,7 @@ import java.net.URL;
 
 public class LoginActivity extends Activity {
 
-    private static final String URL = "http://192.168.1.236/REST/login.php";
+    private static final String URL = "http://192.168.1.234/REST/login.php";
 
     private  LogIn log;
     @Override
