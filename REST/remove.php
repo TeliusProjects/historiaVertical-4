@@ -43,21 +43,16 @@ $entityBody = file_get_contents('php://input');
         ];
         $qry = new MongoDB\Driver\Query($filter, $options);
        
+
         $rows = $collection->find($qry);
        
          foreach ($rows as $row)
           {
           
-            if($row['Username']== $username && $row['Password'] == $pass_hash)
+            if($row['Username'] == $username && $row['Password'] == $pass_hash)
             {
                 $usercorrect = true;
                 $user_found = $row;
-            }
-            else
-            {
-
-                $message = "Wrong combination of username and password";
-                echo json_encode(array('message'=>$message));   
             }
         }
         
@@ -69,14 +64,13 @@ $entityBody = file_get_contents('php://input');
                 $message = "User succesfully deleted";
             
                 $deleted = true;
-                echo json_encode(array('message'=>$message,'deleted'=> $deleted));
+                echo json_encode(array('message'=>$message,'Deleted'=> $deleted));
                 
         }else
         {
-            $message = "Couldn't delete your account";
-
-            $deleted=false;
-            echo json_encode(array('message'=>$message, 'deleted' => $deleted));
+                $deleted= false;
+                $message = "Couldn't delete yout account. Issue: incorrect password";
+                echo json_encode(array('message'=>$message,'Deleted'=>$deleted));  
 
         }
     }else{
