@@ -1,5 +1,6 @@
 package com.example.admin.prova;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -9,6 +10,7 @@ import android.media.Image;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +29,7 @@ public class PictureActivity extends AppCompatActivity {
     private TextView pictureColorView;
     private TextView pictureLogoView;
     private TextView pictureLabelsView;
+    private TextView textViewSearch;
     private String photoPath = null;
     private Bitmap bitmaprotate = null;
     private String result = "";
@@ -44,6 +47,8 @@ public class PictureActivity extends AppCompatActivity {
         TextView pictureColorView = (TextView) findViewById(R.id.pictureColor);
         TextView pictureLogoView = (TextView) findViewById(R.id.pictureLogo);
         TextView pictureLabelsView = (TextView) findViewById(R.id.pictureLabels);
+        textViewSearch = (TextView) findViewById(R.id.labelSearch);
+        textViewSearch.setText("Search on Internet");
         Intent pictureIntent = getIntent();
 
         photoPath = pictureIntent.getStringExtra("image");
@@ -72,6 +77,20 @@ public class PictureActivity extends AppCompatActivity {
 
         //Toast.makeText(this, "Resultado " + result,Toast.LENGTH_SHORT ).show();
 
+        textViewSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View view) {
+
+                Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+
+                String term = firstLabel + " "+ secondLabel + " " + logoView;
+                intent.putExtra(SearchManager.QUERY,term);
+                startActivity(intent);
+
+
+            }
+        });
     }
     public static Bitmap rotateImage(Bitmap source, float angle) {
         Bitmap retVal;

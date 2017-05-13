@@ -147,6 +147,8 @@ public class LoginActivity extends Activity {
                     photoPath  = jobject.getString("ProfileImage");
                     String encodedImage = jobject.getString("EncodedProfileImage");
                     String androidPath = jobject.getString("ProfilePath");
+
+
                     if(!photoPath.equals(null) && !androidPath.equals("null")){
                         File newFile = new File(androidPath);
                         log.setEncoded_profileImageBitmap(encodedImage);
@@ -154,6 +156,9 @@ public class LoginActivity extends Activity {
                         log.setEmail(user_email);
                         log.setUsername(user_name);
                         log.setAndroidPath(androidPath);
+                        menu_principal.putExtra("Encoded_Profile",log.getEncoded_profileImageBitmap());
+                        menu_principal.putExtra("Android_path",androidPath);
+                        menu_principal.putExtra("ProfileImageName",log.getProfileImageName());
                     }
 
 

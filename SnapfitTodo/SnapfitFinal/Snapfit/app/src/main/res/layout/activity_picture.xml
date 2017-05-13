@@ -39,6 +39,12 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/pictureLabels"
                 android:paddingTop="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/labelSearch"
+                android:paddingTop="15dp"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

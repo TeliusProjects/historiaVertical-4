@@ -87,6 +87,9 @@ public class Menu_Principal extends AppCompatActivity
    //s private Button mOptionButtons;
 
 
+    private String encoded_profileImage;
+    private String androidPath;
+    private String imageProfileName;
     private String result = "";
     private ConnectiongDetector cd;
     CameraPhoto cameraPhoto = null;
@@ -121,7 +124,15 @@ public class Menu_Principal extends AppCompatActivity
         user_name  = intent.getStringExtra("Username");
         user_email = intent.getStringExtra("Email");
         imageURL   = intent.getStringExtra("ProfileImage");
+        encoded_profileImage =intent.getStringExtra("Encoded_Profile");
+        androidPath = intent.getStringExtra("Android_path");
+        imageProfileName = intent.getStringExtra("ProfileImageName");
+
         logData    = (LogIn) intent.getSerializableExtra("Log");
+        logData.setEncoded_profileImageBitmap(encoded_profileImage);
+        logData.setAndroidPath(androidPath);
+        logData.setProfileImageName(imageProfileName);
+
 
         setContentView(R.layout.activity_menu__principal);
 
@@ -414,10 +425,10 @@ public class Menu_Principal extends AppCompatActivity
                         final  Intent pictureIntent = new Intent(Menu_Principal.this,PictureActivity.class);
                         String encodedImage = com.example.admin.prova.ImageBase64.encode(bitmap);
 
+                        androidPath =logData.getAndroidPath();
 
-
-                        String encoded_profileImage = logData.getEncoded_profileImageBitmap();
-                        String imageProfileName = logData.getProfileImageName();
+                        encoded_profileImage = logData.getEncoded_profileImageBitmap();
+                        imageProfileName = logData.getProfileImageName();
 
 
                         Log.d(TAG,encodedImage);
@@ -429,7 +440,7 @@ public class Menu_Principal extends AppCompatActivity
                         postData.put("imageName", imageName);
                         postData.put("imageProfile", encoded_profileImage);
                         postData.put("imageProfileName", imageProfileName);
-                        postData.put("androidPath", logData.getAndroidPath());
+                        postData.put("androidPath", androidPath);
 
                         PostResponseAsyncTask task = new PostResponseAsyncTask(Menu_Principal.this, postData, new AsyncResponse() {
                             @Override
@@ -523,9 +534,10 @@ public class Menu_Principal extends AppCompatActivity
                         String encodedImage = com.example.admin.prova.ImageBase64.encode(bitmap);
                         Log.d(TAG,encodedImage);
 
-                        String encoded_profileImage = logData.getEncoded_profileImageBitmap();
-                        String imageProfileName = logData.getProfileImageName();
+                        encoded_profileImage = logData.getEncoded_profileImageBitmap();
+                        imageProfileName = logData.getProfileImageName();
 
+                        androidPath =logData.getAndroidPath();
                         String path = galleryPhoto.getPath();
 
                         file = new File(path);
@@ -538,7 +550,7 @@ public class Menu_Principal extends AppCompatActivity
                         postData.put("imageName",imageName);
                         postData.put("imageProfile", encoded_profileImage);
                         postData.put("imageProfileName", imageProfileName);
-                        postData.put("androidPath", logData.getAndroidPath());
+                        postData.put("androidPath", androidPath);
 
                         PostResponseAsyncTask task = new PostResponseAsyncTask(Menu_Principal.this, postData, new AsyncResponse() {
                             @Override
