@@ -1,0 +1,92 @@
+/* Reseteo universal */
+* {
+	border: 0em;
+	margin: 0em;
+	padding: 0em;
+}
+
+/* Fuentes de la pàgina */
+@font-face {
+	font-family: "Lobster";
+    src: url("../fonts/lobster/Lobster_1.3.otf") format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+/* Modificación de las etiquetas */
+/*
+body {
+	background: blue;
+}
+*/
+
+section#secLogo {
+	max-width: 100%;
+	text-align: center;
+}
+
+img#logo {
+	margin-top: 5em;
+	width: 15%;
+}
+
+section#secLogIn {
+	margin-top: 1.8em;
+}
+
+div, input {
+	font-family: "Lobster";
+	font-size: 1.2em;
+	text-align: center;
+}
+
+input {
+	background-color: transparent;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(0, 0, 0);
+	border-radius: .4em;
+	font-size: 1.2em;
+	text-align: left;
+	margin-bottom: .5em;
+}
+
+a {
+	color: rgb(128,25,10);/*Cambiar color, dependiendo fondo.*/
+	font-size: .8em;
+	text-align: center;
+	text-decoration: none;
+}
+/*Cambiar color al hacer click en el enlace*/
+/*
+a:fade{};
+*/
+
+div#user, div#pass {
+	margin-bottom: .3em;
+}
+
+#username, #password {
+	padding: .2em;
+}
+
+#button {
+	font-size: 1.5em;
+	margin-top: .5em;
+}
+
+#login {
+	padding-left: .2em;
+	padding-right: .2em;
+}
+
+.error, .exito {
+	background-color: rgba(255, 0, 0, 0.7);
+	color: white;
+	padding: 1em;
+}
+
+.exito {
+	background-color: rgba(0, 230, 200, 0.7);
+	color: black;
+}
