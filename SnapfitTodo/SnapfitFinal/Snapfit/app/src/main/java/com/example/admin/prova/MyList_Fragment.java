@@ -3,12 +3,17 @@ package com.example.admin.prova;
 
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
@@ -23,7 +28,11 @@ public class MyList_Fragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private ImageView userImagev;
     private View rootView = null;
+    private TextView userTextV;
+    private TextView emailTextV;
+    GridView gridViewMyList;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -55,12 +64,11 @@ public class MyList_Fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-        fill_List();
 
     }
 
@@ -68,7 +76,34 @@ public class MyList_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_list_, container, false);
+        rootView = inflater.inflate(R.layout.fragment_my_list_, container, false);
+
+        return rootView;
+    }
+
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Bundle newBundle = this.getArguments();
+        String imageURL = newBundle.getString("profileImage");
+        String username = newBundle.getString("username");
+        String user_email = newBundle.getString("useremail");
+        userImagev = (ImageView) rootView.findViewById(R.id.myListImage);
+        userTextV = (TextView)  rootView.findViewById(R.id.list_User);
+        emailTextV = (TextView) rootView.findViewById(R.id.list_EmailUser);
+        gridViewMyList = (GridView) rootView.findViewById(R.id.gridlist);
+
+        Picasso
+                .with(getActivity())
+                .load(imageURL).resize(512,512)
+                .transform(new CircleTransform())
+                .into(userImagev);
+        userTextV.setText(username);
+        emailTextV.setText(user_email);
+
+        fill_List();
     }
 
     public void fill_List()
@@ -79,8 +114,8 @@ public class MyList_Fragment extends Fragment {
 
         final File[] files = storageDir.listFiles();
 
-        GridView gridViewMyList = (GridView) rootView.findViewById(R.id.gridlist);
-        MyListAdapter adapter = new MyListAdapter(getActivity(),files);
+
+        MyListAdapter adapter = new MyListAdapter(rootView.getContext(),files);
         gridViewMyList.setAdapter(adapter);
 
 

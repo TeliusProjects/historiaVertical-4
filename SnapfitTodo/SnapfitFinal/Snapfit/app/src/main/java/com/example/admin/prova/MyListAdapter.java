@@ -40,9 +40,11 @@ public class MyListAdapter extends ArrayAdapter {
 
 
 
+
         Picasso
                 .with(context)
                 .load(url_images[pos])
+                .resize(512,512)
                 .fit()
                 .into(imageViewMyList);
 
