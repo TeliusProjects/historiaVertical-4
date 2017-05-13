@@ -43,6 +43,7 @@ public class  AdaptadorMenu extends ArrayAdapter
             Picasso
                     .with(context)
                     .load(url[pos])
+                    .resize(512,512)
                     .fit()
                     .into(igridView);
 

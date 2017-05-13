@@ -114,7 +114,7 @@ public class PasswordActivity extends AppCompatActivity {
     class DoChangePassword extends AsyncTask<String, Void, String> {
 
 
-        private static final String URL = "http://192.168.134.137/REST/modify.php";
+        private static final String URL = "http://192.168.1.234/REST/modify.php";
 
 
         @Override

@@ -73,7 +73,6 @@ import java.util.HashMap;
 public class Menu_Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
     private static final int PERMS_REQUEST_CODE = 123;
     private static final int READ_REQUEST_CODE = 122;
     private final int PHOTO_CODE = 13323;
@@ -84,6 +83,7 @@ public class Menu_Principal extends AppCompatActivity
     String selectedPhoto;
     boolean entrado  = false;
     private final String TAG = this.getClass().getName();
+    private String global_profilePath;
    //s private Button mOptionButtons;
 
 
@@ -100,6 +100,7 @@ public class Menu_Principal extends AppCompatActivity
     boolean clicked = false;
     private static GridView gvImages = null;
     private ImageView bussinesImageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,7 +121,7 @@ public class Menu_Principal extends AppCompatActivity
         user_name  = intent.getStringExtra("Username");
         user_email = intent.getStringExtra("Email");
         imageURL   = intent.getStringExtra("ProfileImage");
-        logData    = (LogIn) intent.getSerializableExtra("UserObj");
+        logData    = (LogIn) intent.getSerializableExtra("Log");
 
         setContentView(R.layout.activity_menu__principal);
 
@@ -179,9 +180,11 @@ public class Menu_Principal extends AppCompatActivity
         bussinesImageView = (ImageView) findViewById(R.id.imageViewUser);
 
         if(!imageURL.equals("null")){
+
             Picasso
                     .with(Menu_Principal.this)
                     .load(imageURL)
+                    .resize(512,512)
                     .transform(new CircleTransform())
                     .into(bussinesImageView);
         }
@@ -257,13 +260,23 @@ public class Menu_Principal extends AppCompatActivity
         //boton mylist
         if (id == R.id.nav_mylist) {
 
-            MyList_Fragment mylistfragment = MyList_Fragment.newInstance("list1", "list2");
-            FragmentManager managerlist = getSupportFragmentManager();
-            managerlist.beginTransaction().replace(
-                    R.id.relative_for_fragment,
-                    mylistfragment,
-                    mylistfragment.getTag()
-            ).commit();
+            if (ContextCompat.checkSelfPermission(Menu_Principal.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ) {
+                ActivityCompat.requestPermissions(Menu_Principal.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 130);
+            } else {
+                Bundle newBundle = new Bundle();
+                newBundle.putString("profileImage", imageURL);
+                newBundle.putString("username", user_name);
+                newBundle.putString("useremail", user_email);
+                MyList_Fragment mylistfragment = MyList_Fragment.newInstance("list1", "list2");
+                FragmentManager managerlist = getSupportFragmentManager();
+                mylistfragment.setArguments(newBundle);
+                managerlist.beginTransaction().replace(
+                        R.id.relative_for_fragment,
+                        mylistfragment,
+                        mylistfragment.getTag()
+                ).commit();
+            }
+
 
 
         } else if (id == R.id.nav_settings) {
@@ -295,21 +308,21 @@ public class Menu_Principal extends AppCompatActivity
         return true;
     }
     private void showOptions(boolean clicked){
-        final CharSequence[] options = {"Tomar foto", "Elegir de galería", "Cancel"};
+        final CharSequence[] options = {"Take picture", "Pick from gallery", "Cancel"};
         final AlertDialog.Builder builder = new AlertDialog.Builder(Menu_Principal.this);
-        builder.setTitle("Elige una opción");
+        builder.setTitle("Choose an option");
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 try {
-                    if (options[i] == "Tomar foto") {
+                    if (options[i] == "Take picture") {
 
                         if (ContextCompat.checkSelfPermission(Menu_Principal.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(Menu_Principal.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ) {
                             ActivityCompat.requestPermissions(Menu_Principal.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 110);
                         } else {
                             startActivityForResult(cameraPhoto.takePhotoIntent(), PHOTO_CODE);
                         }
-                    } else if (options[i] == "Elegir de galería") {
+                    } else if (options[i] == "Pick from gallery") {
                        if(ContextCompat.checkSelfPermission(Menu_Principal.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
                            ActivityCompat.requestPermissions(Menu_Principal.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 120);
                         }else{
@@ -348,6 +361,22 @@ public class Menu_Principal extends AppCompatActivity
                 startActivityForResult(galleryPhoto.openGalleryIntent(), SELECT_PICTURE);
             }
         }
+        if(requestCode == 130){
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Bundle newBundle = new Bundle();
+                newBundle.putString("profileImage", imageURL);
+                newBundle.putString("username", user_name);
+                newBundle.putString("useremail", user_email);
+                MyList_Fragment mylistfragment = MyList_Fragment.newInstance("list1", "list2");
+                FragmentManager managerlist = getSupportFragmentManager();
+                mylistfragment.setArguments(newBundle);
+                managerlist.beginTransaction().replace(
+                        R.id.relative_for_fragment,
+                        mylistfragment,
+                        mylistfragment.getTag()
+                ).commit();
+            }
+        }
     }
 
 
@@ -357,7 +386,7 @@ public class Menu_Principal extends AppCompatActivity
 
         String[] permissions2 = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
 
-        if (option.equals("Tomar foto")) {
+        if (option.equals("Take picture")) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(permissions, PERMS_REQUEST_CODE);
             }
@@ -400,6 +429,7 @@ public class Menu_Principal extends AppCompatActivity
                         postData.put("imageName", imageName);
                         postData.put("imageProfile", encoded_profileImage);
                         postData.put("imageProfileName", imageProfileName);
+                        postData.put("androidPath", logData.getAndroidPath());
 
                         PostResponseAsyncTask task = new PostResponseAsyncTask(Menu_Principal.this, postData, new AsyncResponse() {
                             @Override
@@ -408,19 +438,17 @@ public class Menu_Principal extends AppCompatActivity
                                 try {
                                     JSONObject jsonObject = new JSONObject(s);
                                     String status = jsonObject.getString("Status");
-                                    if(status.equals("200")){
-                                        Toast.makeText(getApplicationContext(), "Foto enviada!", Toast.LENGTH_LONG).show();
-                                    }
 
-                                    //if(status.equals("200")){
-                                    //    result = s;
-                                    //    Toast.makeText(getApplicationContext(), "Foto enviada!", Toast.LENGTH_LONG).show();
-                                    //    pictureIntent.putExtra("image", selectedPhoto);
-                                    //    pictureIntent.putExtra("resultado", result);
-                                    //    startActivity(pictureIntent);
-                                    //    }
+
+                                    if(status.equals("200")){
+                                        result = s;
+                                        Toast.makeText(getApplicationContext(), "Picture sended!", Toast.LENGTH_LONG).show();
+                                        pictureIntent.putExtra("image", selectedPhoto);
+                                        pictureIntent.putExtra("resultado", result);
+                                        startActivity(pictureIntent);
+                                    }
                                     else {
-                                        Toast.makeText(getApplicationContext(), "Foto no enviada!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Couldn't send picture", Toast.LENGTH_LONG).show();
                                     }
                                 }catch (JSONException e) {
                                     e.printStackTrace();
@@ -429,7 +457,7 @@ public class Menu_Principal extends AppCompatActivity
                             }
                         });
 
-                        task.execute("http://192.168.1.47/REST/file_upload.php");
+                        task.execute("http://192.168.1.234/REST/file_upload.php");
                         task.setEachExceptionsHandler(new EachExceptionsHandler() {
                             @Override
                             public void handleIOException(IOException e) {
@@ -458,11 +486,12 @@ public class Menu_Principal extends AppCompatActivity
                         bitmap = ImageLoader.init().from(selectedPhoto).getBitmap();
                         String encoding = com.example.admin.prova.ImageBase64.encode(bitmap);
                         logData.setEncoded_profileImageBitmap(encoding);
+                        logData.setAndroidPath(selectedPhoto);
                         File file = new File(selectedPhoto);
                         logData.setProfileImageName(file.getName());
                         Picasso
                                 .with(Menu_Principal.this)
-                                .load(selectedPhoto)
+                                .load(selectedPhoto).resize(512,512)
                                 .transform(new CircleTransform())
                                 .into(bussinesImageView);
 
@@ -509,6 +538,7 @@ public class Menu_Principal extends AppCompatActivity
                         postData.put("imageName",imageName);
                         postData.put("imageProfile", encoded_profileImage);
                         postData.put("imageProfileName", imageProfileName);
+                        postData.put("androidPath", logData.getAndroidPath());
 
                         PostResponseAsyncTask task = new PostResponseAsyncTask(Menu_Principal.this, postData, new AsyncResponse() {
                             @Override
@@ -520,13 +550,13 @@ public class Menu_Principal extends AppCompatActivity
 
                                     if(status.equals("200")){
                                         result = s;
-                                        Toast.makeText(getApplicationContext(), "Foto enviada!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Picture sended!", Toast.LENGTH_LONG).show();
                                         pictureIntent.putExtra("image", selectedPhoto);
                                         pictureIntent.putExtra("resultado", result);
                                         startActivity(pictureIntent);
                                     }
                                     else {
-                                        Toast.makeText(getApplicationContext(), "Foto no enviada!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Couldn't send picture!", Toast.LENGTH_LONG).show();
                                     }
                                 }catch (JSONException e) {
                                     e.printStackTrace();
@@ -534,29 +564,29 @@ public class Menu_Principal extends AppCompatActivity
 
                             }
                         });
-                        task.execute("http://192.168.1.47/REST/file_upload.php");
+                        task.execute("http://192.168.1.234/REST/file_upload.php");
                         task.setEachExceptionsHandler(new EachExceptionsHandler() {
                             @Override
                             public void handleIOException(IOException e) {
 
-                                Toast.makeText(getApplicationContext(), "No se ha podido conectar al servidor", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Couldn't connect to the server", Toast.LENGTH_LONG).show();
                             }
 
                             @Override
                             public void handleMalformedURLException(MalformedURLException e) {
-                                Toast.makeText(getApplicationContext(), "Error en la url", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "URL ERROR", Toast.LENGTH_LONG).show();
                             }
 
                             @Override
                             public void handleProtocolException(ProtocolException e) {
 
-                                Toast.makeText(getApplicationContext(), "Error del protocolo", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "PROTOCOL ERROR", Toast.LENGTH_LONG).show();
                             }
 
                             @Override
                             public void handleUnsupportedEncodingException(UnsupportedEncodingException e) {
 
-                                Toast.makeText(getApplicationContext(), "Error en la codificacion de la imagen", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "PICTURE ENCODING ERROR", Toast.LENGTH_LONG).show();
                             }
                         });
                     }else{
@@ -565,15 +595,16 @@ public class Menu_Principal extends AppCompatActivity
                         String encoding = com.example.admin.prova.ImageBase64.encode(bitmap);
                         logData.setEncoded_profileImageBitmap(encoding);
                         logData.setProfileImageName(file_profile.getName());
+                        logData.setAndroidPath(photoPath);
                         Picasso
                                 .with(Menu_Principal.this)
-                                .load(uri)
+                                .load(uri).resize(512,512)
                                 .transform(new CircleTransform())
                                 .into(bussinesImageView);
                         clicked = false;
                     }
                 } catch (FileNotFoundException e) {
-                    Toast.makeText(getApplicationContext(), "Error mientras se escogía la foto.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "ERROR WHILE CHOOSING THE PICTURE", Toast.LENGTH_LONG).show();
                 }
             }
         }

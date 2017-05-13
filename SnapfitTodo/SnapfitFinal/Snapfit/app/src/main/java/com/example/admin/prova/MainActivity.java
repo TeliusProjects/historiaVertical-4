@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         ImageView logoPagPrin = (ImageView) findViewById(R.id.LogoPagPrincipal);
         Button BtnLogIn = (Button) findViewById(R.id.btnLogIn);
         Button BtnSignIn = (Button) findViewById(R.id.btnSignIn);
-        Button btnMenu  = (Button)  findViewById(R.id.btnMenu);
 
         logoPagPrin.setImageResource(R.drawable.logo256);
         /*BtnLogIn.setImageResource(R.drawable.login);
@@ -52,16 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
-
-        btnMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent2 = new Intent(MainActivity.this,Menu_Principal.class);
-                startActivity(intent2);
-
-
-
-            }
-        });
+    }
+    @Override
+    public void onBackPressed() {
     }
 }

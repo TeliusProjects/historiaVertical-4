@@ -61,7 +61,7 @@ public class PictureActivity extends AppCompatActivity {
             pictureImageActivity.setImageBitmap(bitmaprotate);
             pictureColorView.setText("Color: " + colorView);
             pictureLogoView.setText("Logo: " + logoView);
-            pictureLabelsView.setText("Etiquetas: " + firstLabel + ", " + secondLabel);
+            pictureLabelsView.setText("Tags: " + firstLabel + ", " + secondLabel);
 
         } catch (JSONException e) {
             e.printStackTrace();

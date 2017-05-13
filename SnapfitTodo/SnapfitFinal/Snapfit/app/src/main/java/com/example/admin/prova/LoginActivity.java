@@ -16,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -24,9 +25,9 @@ import java.net.URL;
 
 public class LoginActivity extends Activity {
 
-    private static final String URL = "http://192.168.1.47/REST/login.php";
+    private static final String URL = "http://192.168.1.234/REST/login.php";
 
-    private  LogIn log;
+    private LogIn log;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,28 +52,28 @@ public class LoginActivity extends Activity {
                 String pass_hashed = Encriptacio.md5(pass);
 
 
-              log  = new LogIn(user,pass_hashed);
+                log  = new LogIn(user,pass_hashed);
 
-                    JSONArray ArrayLogin = new JSONArray();
-                    JSONObject jLogin = new JSONObject();
+                JSONArray ArrayLogin = new JSONArray();
+                JSONObject jLogin = new JSONObject();
 
-                    try {
-                        jLogin.put("username",log.getUsername());
-                        jLogin.put("Password",log.getPassword());
+                try {
+                    jLogin.put("username",log.getUsername());
+                    jLogin.put("Password",log.getPassword());
 
 
-                        //add to JSON array
-                        ArrayLogin.put(jLogin);
+                    //add to JSON array
+                    ArrayLogin.put(jLogin);
 
-                        Log.d("json api","Json array converted from login " + ArrayLogin.toString() );
+                    Log.d("json api","Json array converted from login " + ArrayLogin.toString() );
 
-                        String JsonData= ArrayLogin.toString();
+                    String JsonData= ArrayLogin.toString();
 
-                        new DoCreateLogin().execute(JsonData);
+                    new DoCreateLogin().execute(JsonData);
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
 
 
@@ -88,13 +89,13 @@ public class LoginActivity extends Activity {
     /**
      * Created by admin on 16/03/2017.
      */
-     class DoCreateLogin  extends AsyncTask<String, Void, String> {
+    class DoCreateLogin  extends AsyncTask<String, Void, String> {
 
         private String photoPath;
         @Override
         protected String doInBackground(String... Params) {
 
-                String JsonData = Params[0];
+            String JsonData = Params[0];
 
 
             try {
@@ -138,19 +139,31 @@ public class LoginActivity extends Activity {
                 boolean correct_user = jobject.getBoolean("Correct");
 
                 if(correct_user){
+                    Intent menu_principal =
+                            new Intent(LoginActivity.this, Menu_Principal.class);
+
                     user_name = jobject.getString("Username");
                     user_email = jobject.getString("Email");
                     photoPath  = jobject.getString("ProfileImage");
-                    Intent menu_principal =
-                            new Intent(LoginActivity.this, Menu_Principal.class);
+                    String encodedImage = jobject.getString("EncodedProfileImage");
+                    String androidPath = jobject.getString("ProfilePath");
+                    if(!photoPath.equals(null) && !androidPath.equals("null")){
+                        File newFile = new File(androidPath);
+                        log.setEncoded_profileImageBitmap(encodedImage);
+                        log.setProfileImageName(newFile.getName());
+                        log.setEmail(user_email);
+                        log.setUsername(user_name);
+                        log.setAndroidPath(androidPath);
+                    }
+
 
                     menu_principal.putExtra("Username", user_name);
                     menu_principal.putExtra("Email", user_email);
                     menu_principal.putExtra("ProfileImage", photoPath);
-                    menu_principal.putExtra("UserObj", log);
+                    menu_principal.putExtra("Log", log);
                     startActivity(menu_principal);
 
-                  //  ((LoginActivity)context).finish();
+                    //  ((LoginActivity)context).finish();
 
                 }
 

@@ -16,7 +16,14 @@
             android:src="@drawable/logo256"
             android:id="@+id/LogoPagPrincipal"
             android:layout_gravity="center"
-            android:layout_marginTop="0.74in"/>
+            android:layout_marginTop="0.40in"/>
+
+        <ImageView
+            android:layout_width="242dp"
+            android:layout_height="94dp"
+            android:src ="@drawable/textosnapit"
+            android:layout_gravity="center"
+            android:layout_marginTop="0.2in"/>
 
 
         <LinearLayout
@@ -24,30 +31,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center"
-            android:layout_marginTop="1.15in">
+            android:layout_marginTop="0.50in">
 
-                <!--<ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btnLogIn"
-                    android:paddingRight="10dp"
-                    android:layout_gravity="center"
-                    android:background="#316CB5"/>
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btnSignIn"
-                    android:paddingLeft="10dp"
-                    android:layout_gravity="center"
-                    android:background="#316CB5"/>
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btnMenu"
-                    android:paddingLeft="10dp"
-                    android:layout_gravity="center"
-                    android:background="#316CB5"/>-->
+             
 
                 <Button
                     android:layout_width="wrap_content"
@@ -70,24 +56,6 @@
                     android:layout_gravity="center"
                     android:background="@drawable/colorbutton"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="     "/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btnMenu"
-                    android:text="Main Menu"
-                    android:textColor="#0B004F"
-                    android:layout_gravity="center"
-                    android:background="@drawable/colorbutton"/>
-
-
-
-
-
         </LinearLayout>
-
 
 </LinearLayout>

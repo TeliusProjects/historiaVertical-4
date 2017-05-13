@@ -30,8 +30,7 @@ public class Encriptacio
 		}
 		catch(NoSuchAlgorithmException e)
 		{
-			System.out.println("L'algorisme enviat al mètode getInstance és " +
-					"incorrecte");
+			System.out.println("The sended algorithm to getInstance method is incorrect");
 		}
 		return hexad.toString();
 	}
