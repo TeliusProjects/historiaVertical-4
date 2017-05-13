@@ -52,7 +52,7 @@
 					
 						$valid_file = true;
 						//can't be larger than ~4 MB
-						if(getimagesizefromstring(($path) > (802400000000000000))) 
+						if(getimagesizefromstring(($path) > (40240000))) 
 						{
 							
 							$valid_file = false;

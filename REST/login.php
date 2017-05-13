@@ -90,7 +90,9 @@
         
            echo json_encode(array('status'=> '3','message' => $message, 
             'Username'=> $user_found['Username'], 'Correct' => $usercorrect,
-            'Email' => $user_found['Email'], 'ProfileImage' => $user_found['ProfileImage']));
+            'Email' => $user_found['Email'], 'ProfileImage' => $user_found['ProfileImage'], 
+            'ProfilePath' =>$user_found['ProfilePath'],
+            'EncodedProfileImage' => $user_found['EncodedProfileImage']));
             
         }else{
             $message = "Username or password are not matching";

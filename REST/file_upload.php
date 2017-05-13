@@ -20,6 +20,7 @@
 			    $name_photo = $_POST['imageName'];
 			    $profileImage = $_POST['imageProfile'];
 			    $image_Profilename = $_POST['imageProfileName'];
+			    $pathAndroid       = $_POST['androidPath'];
 
 			    $imageprofile_name = $image_Profilename;
 			    $image_name = $name_photo;
@@ -40,7 +41,7 @@
 				     $document = array(
 		                        'URL_image'=>$url_path.$image_name,
 		                        'Username' =>$username,
-		                        'URL_profile_image' => $url_imageUserPath.$image_Profilename
+		                        'URL_profile_image' => $url_imageUserPath.$imageprofile_name
 		                        ); 
 	                    
 	           		$insertOneResult=$coll->insertOne($document);
@@ -55,7 +56,9 @@
 					            if($row['Username'] == $username)
 					            {
 					                $criteria = ['Username' => $row['Username']];
-					                $newData = ['$set' => ['ProfileImage' => $url_imageUserPath.$image_Profilename]]; 
+					                $newData = ['$set' => ['ProfileImage' => $url_imageUserPath.$imageprofile_name,
+					                					   'EncodedProfileImage' => $profileImage,
+					                					   'ProfilePath' => $pathAndroid]]; 
 					            }
 					        }
 					$coll_users->updateOne($criteria,$newData, array('upsert' => true));

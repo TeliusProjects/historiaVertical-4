@@ -99,7 +99,7 @@ if(empty($body)){
                         'Username'=>$user,
                         'Email'=>$email,
                         'Password'=>md5($password),
-                        'ProfileImage' => null
+                        'ProfileImage' => "null"
                         ); 
                     
                      $insertOneResult=$collection->insertOne($document);
@@ -123,7 +123,9 @@ if(empty($body)){
                         'Username'=>$user,
                         'Email'=>$email,
                         'Password'=>$password,
-                        'ProfileImage' => "null"
+                        'ProfileImage' => "null",
+                        'EncodedProfileImage' => "null",
+                        'ProfilePath' => "null"
                         ); 
                     
                      $insertOneResult=$collection->insertOne($document);
