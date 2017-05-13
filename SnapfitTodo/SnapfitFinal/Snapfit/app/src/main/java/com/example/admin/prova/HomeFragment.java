@@ -97,7 +97,7 @@ public class HomeFragment extends Fragment {
 
     public class FillList extends AsyncTask<String,Void,ArrayList<String>> {
         private ArrayList<String> url_images = new ArrayList<String>();
-        private static final String URL = "http://192.168.1.47/REST/rellenarlist.php";
+        private static final String URL = "http://192.168.1.234/REST/rellenarlist.php";
 
         private String urls;
 
