@@ -55,6 +55,7 @@ public class SignUpActivity extends AppCompatActivity {
                 JSONObject jUser = new JSONObject();
 
                 try {
+
                     jUser.put("username",user.getUsername());
                     jUser.put("password",user.getPassword());
                     jUser.put("password2",user.getPassword2());

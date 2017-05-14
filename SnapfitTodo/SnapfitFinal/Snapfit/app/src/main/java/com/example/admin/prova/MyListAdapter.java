@@ -45,7 +45,6 @@ public class MyListAdapter extends ArrayAdapter {
                 .with(context)
                 .load(url_images[pos])
                 .resize(512,512)
-                .fit()
                 .into(imageViewMyList);
 
         return item;

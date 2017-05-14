@@ -44,7 +44,6 @@ public class  AdaptadorMenu extends ArrayAdapter
                     .with(context)
                     .load(url[pos])
                     .resize(512,512)
-                    .fit()
                     .into(igridView);
 
             return item;

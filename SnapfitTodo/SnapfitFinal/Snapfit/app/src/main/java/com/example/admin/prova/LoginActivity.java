@@ -174,10 +174,12 @@ public class LoginActivity extends Activity {
 
                 in.close();
                 out.close();
+                httpurlconnection.disconnect();
+
                 Log.d("json api","DoCreateLogIn.doInBackGround Json return: " + result);
 
 
-                httpurlconnection.disconnect();
+
 
 
 
