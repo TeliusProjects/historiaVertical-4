@@ -195,6 +195,12 @@ public class LoginActivity extends Activity {
 
                 boolean correct_user = jobject.getBoolean("Correct");
 
+                in.close();
+                out.close();
+                Log.d("json api","DoCreateLogIn.doInBackGround Json return: " + result);
+
+                httpurlconnection.disconnect();
+
                 if(correct_user){
                     Intent menu_principal =
                             new Intent(LoginActivity.this, Menu_Principal.class);
@@ -229,12 +235,6 @@ public class LoginActivity extends Activity {
 
                 }
 
-                in.close();
-                out.close();
-                Log.d("json api","DoCreateLogIn.doInBackGround Json return: " + result);
-
-
-                httpurlconnection.disconnect();
 
 
 

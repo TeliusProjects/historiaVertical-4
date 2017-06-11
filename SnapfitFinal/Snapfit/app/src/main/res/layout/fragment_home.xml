@@ -12,9 +12,9 @@
         android:id="@+id/GridHome"
         android:numColumns="1"
         android:visibility="visible"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:verticalSpacing="25dp">
+        android:verticalSpacing="20dp">
     </GridView>
 
 </RelativeLayout>

@@ -21,7 +21,7 @@ import java.net.URL;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private static final String URL = MainActivity.URL + "register.php";
+    private static final String URL = MainActivity.URL + "register_db.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
