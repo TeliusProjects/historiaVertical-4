@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#c7c7c7</color>
+    <color name="colorPrimaryDark">#c30008ff</color>
+    <color name="colorAccent">#ffffff</color>
+    <color name="Blue">#81BEF7</color>
+    <color name="bottombarColor">#356FF0</color>
+    <color name="background">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="back_content">#ffffff</color>
+    <color name="toolbar_up">#5CBBCC</color>
+    <color name="toolbar_down">#5CBBCC</color>
+    <color name="Applicaction_Background">#FDF5E6</color>
+    <color name="All_Background">#5CBBCC</color>
+    <color name="Setting_Background">#5CBBCC</color>
+    <color name="icon_colour">#006fff</color>
+
+</resources>

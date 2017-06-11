@@ -12,7 +12,7 @@
 
 	foreach ($rows as $row) {
 	  # code...
-     	$urls[] = array('url' => $row['URL_image']);   	
+     	$urls[] = array('url' => $row['URL_image'], 'username' => $row['Username'], 'url_profile' => $row['URL_profile_image']);   	
      }
 
      $jsonString = json_encode($urls);

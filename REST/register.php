@@ -131,17 +131,18 @@ if(empty($body)){
                      $insertOneResult=$collection->insertOne($document);
 
                      if($insertOneResult){
-                        echo 'Hi there ' .$user . ' You are successfully registered.' ;
+                        echo 'Usuario registrado correctamente.' ;
+                       
                          
                      }else{
-                        echo "The user wasn't registered";
+                        echo "El usuario no se ha podido registrar.";
                      }
                   //$bulk->insert($saveUser);
 
                   //$connection->execduteBulkWrite('users.user', $bulk);
                  }else{
                     //var_dump($resultado);
-                     echo "Email is already existed.Please register with another Email id!.";
+                     echo "El correo que intenta introducir ya ha sido registrado anteriormente.";
                  }
              }
 

@@ -9,10 +9,16 @@
 		$coll = $db->MyList;
 		$coll_users = $db->user;
 
+		//ruta donde se guardarán las imágenes que han ido subiendo los usuarios.
 	    $target_path = "/var/www/REST/ListUsers/";
+	    //ruta en la que se guardarán las imágenes de perfil de los usuarios
 	    $target_path_imageUser = "/var/www/REST/ImageUsers/";
+
+	    //Estas son las url de descarga, para poder cargar las ímágenes en android con la librería Picasso.
 	    $url_path    = "http://192.168.1.47/REST/ListUsers/";
-	    $url_imageUserPath = "http://192.168.1.47/REST/ImageUsers/";
+
+	    $url_imageUserPath = "http://192.168.1.47/REST/ImageUsers/"; 
+
 	   
 		if (isset($_POST['image'])) {
 			    $imagen = $_POST['image'];
@@ -36,7 +42,7 @@
 			    	
 			    	 $color     = $recognition->image_properties($target_path);
 				   	 $logo_name = $recognition->logo_detection($target_path);
-				     $labels    = $recognition->logo_detection($target_path);
+				     $labels    = $recognition->label_detection($target_path);
 
 				     $document = array(
 		                        'URL_image'=>$url_path.$image_name,
@@ -73,4 +79,3 @@
 			    		"File" => $image, "Target path" => $target_path)); 
 			}
 		}
-?>

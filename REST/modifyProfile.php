@@ -57,7 +57,9 @@ require ('/home/snapfit/vendor/autoload.php');
                                        'Gender' => $gender]]; 
 
 
-               if(!empty($email) || !empty($name) || !empty($birthday) || !empty($phoneNumber) || !empty($gender))
+               if(!empty($email) || !empty($name) 
+                || !empty($birthday) || !empty($phoneNumber) 
+                || !empty($gender))
                {
 
                     $collection -> updateOne($criteria,$newData, array('upsert' => true ));
@@ -75,6 +77,7 @@ require ('/home/snapfit/vendor/autoload.php');
             }
             
         }
+
         if($usercorrect)
         {
           $results = $collection ->find($qry);

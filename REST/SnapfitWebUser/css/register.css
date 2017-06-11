@@ -1,0 +1,65 @@
+/* Reseteo universal */
+* {
+	border: 0em;
+	margin: 0em;
+	padding: 0em;
+}
+
+/* Fuentes de la pàgina */
+@font-face {
+	font-family: "Lobster";
+    src: url("../fonts/lobster/Lobster_1.3.otf") format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+/* Modificación de los estilos de la página */
+div, input {
+	font-family: "Lobster";
+	font-size: 1.2em;
+}
+
+input {
+	background-color: transparent;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(0, 0, 0);
+	border-radius: .4em;
+	font-size: 1.2em;
+	text-align: left;
+	margin-bottom: .5em;
+}
+
+section {
+	margin: 2em;
+	text-align: center;
+}
+
+div#user, div#pass {
+	margin-bottom: .3em;
+}
+
+img#logo {
+	margin-top: 3em;
+	width: 15%;
+}
+
+section#secLogo {
+	max-width: 100%;
+	text-align: center;
+}
+
+#username, #password, #password2, #mail, #mail2 {
+	padding: .2em;
+}
+
+#button {
+	font-size: 1.5em;
+	margin-top: .5em;
+}
+
+#register {
+	padding-bottom: .1em;
+	padding-left: .4em;
+	padding-right: .4em;
+}
