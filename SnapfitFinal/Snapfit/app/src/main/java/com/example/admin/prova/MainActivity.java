@@ -11,8 +11,8 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
-        protected static String URL = "http://snapfitcep.ddns.net/REST/";
-    @Override
+        protected static String URL = "http://snapfitcep.ddns.net/";
+    @Override 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
