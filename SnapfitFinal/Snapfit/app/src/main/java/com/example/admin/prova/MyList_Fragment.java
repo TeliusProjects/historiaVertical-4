@@ -110,6 +110,18 @@ public class MyList_Fragment extends Fragment {
         userTextV.setText(username);
         emailTextV.setText(user_email);
 
+        if(imageURL.equals("null"))
+        {
+            Picasso
+                    .with(getActivity())
+                    .load(R.drawable.businessman)
+                    .resize(512,512)
+                    .transform(new CircleTransform())
+                    .into(userImagev);
+
+
+        }
+
         fill_List();
     }
 
