@@ -61,7 +61,7 @@ $entityBody = file_get_contents('php://input');
 
                
                 $collection -> deleteOne(['Username' => $user_found['Username']]);
-                $message = "User succesfully deleted";
+                $message = "User succesfully deleted.";
             
                 $deleted = true;
                 echo json_encode(array('message'=>$message,'Deleted'=> $deleted));
